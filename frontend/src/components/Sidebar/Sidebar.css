@@ -1,0 +1,174 @@
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+#sidebar {
+    width: 90px;
+    min-width: 90px;
+    transition: all 0.25s ease-in-out;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+}
+
+button.sidebar-link {
+    background-color: transparent;
+    border: none;
+    color: var(--surface-color);
+    width: 100%;
+    text-align: left;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) button.sidebar-link span,
+#sidebar:not(.expand) a.sidebar-link span {
+    display: none;
+}
+
+#sidebar:not(.expand) .sidebar-item i {
+    font-size: 1.5rem;
+}
+
+#sidebar.expand {
+    width: 260px;
+    min-width: 260px;
+}
+
+.toggle-btn {
+    width: 30px;
+    height: 30px;
+    color: var(--surface-color);
+    border-radius: 0.425rem;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+}
+
+.toggle-btn:hover {
+    background-color: #357590;
+}
+
+.toggle-btn i {
+    color: var(--surface-color);
+}
+
+#sidebar.expand .sidebar-logo,
+#sidebar.expand button.sidebar-link span,
+#sidebar.expand a.sidebar-link span {
+    animation: fadeIn .25s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.sidebar-logo a {
+    color: var(--surface-color);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+a.sidebar-link, button.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: var(--surface-color);
+    display: block;
+    white-space: nowrap;
+    font-weight: 700;
+    border-left: 3px solid transparent
+}
+
+.sidebar-nav {
+    padding: 0.7rem 0;
+    flex: 1 1 auto;
+    z-index: 10;
+}
+
+.sidebar-link i,
+.dropdown-item i {
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+a.sidebar-link:hover,
+button.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 5px solid var(--secondary-color);
+}
+
+.sidebar-item {
+    position: relative;
+}
+
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+    position: absolute;
+    top: 0;
+    left: 90px;
+    background-color: var(--primary-color);
+    padding: 0;
+    min-width: 15em;
+    display: none;
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+}
+
+#sidebar.expand .sidebar-link.has-dropdown::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}
+
+#sidebar.expand .sidebar-link.has-dropdown.open::after {
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+#sidebar.expand .sidebar-dropdown {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+
+#sidebar.expand .sidebar-dropdown.show {
+    max-height: 200px;
+    opacity: 1;
+}
+
+#sidebar.expand .sidebar-dropdown .sidebar-item::before {
+    content: "";
+    position: absolute;
+    left: 4rem;
+    top: 50%;
+    width: 6px;
+    height: 2px;
+    background-color: var(--surface-color);
+    transform: translateY(-50%);
+}
+
+#sidebar.expand .sidebar-dropdown .sidebar-link {
+    padding-left: 4.5rem;
+    font-size: 0.9rem;
+}

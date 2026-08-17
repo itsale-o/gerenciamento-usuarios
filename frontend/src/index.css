@@ -1,0 +1,42 @@
+:root {
+    /* Brand */
+    --primary-color: #1E3A5F;
+    --secondary-color: #3B82A0;
+    --accent-color: #2CB1A6;
+
+    /* Backgrounds */
+    --background-color: #F5F7FA;
+    --surface-color: #FFFFFF;
+
+    /* Text */
+    --text-color: #1F2937;
+    --text-secondary-color: #6B7280;
+
+    /* Borders */
+    --border-color: #E5E7EB;
+
+    /* Status */
+    --success-color: #22C55E;
+    --warning-color: #F59E0B;
+    --danger-color: #EF4444;
+
+    /* Typography */
+    --font-family: "Inter", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+html,
+body,
+#root {
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
