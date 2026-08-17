@@ -1,0 +1,36 @@
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.list-header-info h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.list-header-info p {
+    margin: 0.35rem 0 0;
+    color: var(--text-secondary-color);
+    font-size: 0.95rem;
+}
+
+.list-header-add {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    background-color: var(--btn-add);
+    color: var(--surface-color);
+    font-weight: 700;
+}
+
+.list-header-add:hover {
+    background-color: var(--btn-add-hover);
+}

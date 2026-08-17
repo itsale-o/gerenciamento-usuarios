@@ -27,10 +27,17 @@ function Sidebar() {
             
             <ul className="sidebar-nav">
                 <li className="sidebar-item">
-                    <a href="" className="sidebar-link">
+                    <Link to="/" className="sidebar-link">
+                        <i className='bx bxs-home'></i>
+                        <span>Início</span>
+                    </Link>
+                </li>
+
+                <li className="sidebar-item">
+                    <Link to="/clientes" className="sidebar-link">
                         <i className='bx bxs-user-circle'></i>
                         <span>Clientes</span>
-                    </a>
+                    </Link>
                 </li>
 
                 <li className="sidebar-item">

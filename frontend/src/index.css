@@ -20,6 +20,10 @@
     --warning-color: #F59E0B;
     --danger-color: #EF4444;
 
+    /* Buttons */
+    --btn-add: #198754;
+    --btn-add-hover: #177A4C;
+
     /* Typography */
     --font-family: "Inter", sans-serif;
 }
