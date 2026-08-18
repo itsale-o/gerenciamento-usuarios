@@ -1,4 +1,5 @@
 import "./ListHeader.css";
+import Button from "../Button/Button";
 
 function ListHeader({
     title,
@@ -16,14 +17,13 @@ function ListHeader({
             </div>
 
             {onAdd && (
-                <button
-                    type="button"
-                    className="list-header-add"
+                <Button
+                    icon="bx-plus"
                     onClick={onAdd}
+                    variant="add"
                 >
-                    <i className="bi bi-plus-lg"></i>
                     {addLabel}
-                </button>
+                </Button>
             )}
         </div>
     )

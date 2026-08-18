@@ -18,19 +18,3 @@
     font-size: 0.95rem;
 }
 
-.list-header-add {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border: none;
-    border-radius: 6px;
-    padding: 0.6rem 1rem;
-    cursor: pointer;
-    background-color: var(--btn-add);
-    color: var(--surface-color);
-    font-weight: 700;
-}
-
-.list-header-add:hover {
-    background-color: var(--btn-add-hover);
-}

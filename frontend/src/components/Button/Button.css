@@ -1,0 +1,19 @@
+.button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.add {
+    background-color: var(--btn-add);
+    color: var(--surface-color);
+}
+
+.add:hover {
+    background-color: var(--btn-add-hover);
+}

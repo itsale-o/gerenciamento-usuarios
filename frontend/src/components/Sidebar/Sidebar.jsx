@@ -41,10 +41,10 @@ function Sidebar() {
                 </li>
 
                 <li className="sidebar-item">
-                    <a href="#" className="sidebar-link">
+                    <Link to="/produtos" className="sidebar-link">
                         <i className='bx bxs-package'></i>
                         <span>Produtos</span>
-                    </a>
+                    </Link>
                 </li>
 
                 <li className="sidebar-item">
