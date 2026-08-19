@@ -5,7 +5,7 @@ function ListHeader({
     title,
     description,
     addLabel,
-    onAdd
+    onClick
 }) {
     return (
         <div className="list-header">
@@ -16,10 +16,10 @@ function ListHeader({
                 )}
             </div>
 
-            {onAdd && (
+            {onClick && (
                 <Button
-                    icon="bx-plus"
-                    onClick={onAdd}
+                    icon={<i className="bx bx-plus"></i>}
+                    onClick={onClick}
                     variant="add"
                 >
                     {addLabel}

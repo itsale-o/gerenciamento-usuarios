@@ -13,7 +13,7 @@ function Button({
             className={`button ${variant}`}
             onClick={onClick}
         >
-            {icon && <i className={`bx ${icon}`}></i>}
+            {icon}
             {children}
         </button>
     );

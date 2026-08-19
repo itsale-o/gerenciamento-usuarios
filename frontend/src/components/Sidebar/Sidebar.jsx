@@ -48,6 +48,13 @@ function Sidebar() {
                 </li>
 
                 <li className="sidebar-item">
+                    <Link to="/configuracoes" className="sidebar-link">
+                        <i className='bx bxs-cog'></i>
+                        <span>Configurações</span>
+                    </Link>
+                </li>
+
+                <li className="sidebar-item">
                     <button 
                         type="button"
                         className={`sidebar-link has-dropdown ${collapseOpen ? 'open' : 'collapsed'}`}

@@ -1,0 +1,19 @@
+h3 {
+    color: var(--primary-color);
+}
+
+.form {
+    width: 100%;
+}
+
+.form-label {
+    color: var(--text-color);
+    font-weight: 700 !important;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}

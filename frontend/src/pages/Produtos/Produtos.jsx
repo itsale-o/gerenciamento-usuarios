@@ -19,24 +19,24 @@ function Produtos() {
     }
 
     const products = [
-        {
-            id: 1,
-            name: 'Produto',
-            tipo: 'Diverso',
-            qtde: 150,
-        },
-        {
-            id: 2,
-            name: 'Produto 2',
-            tipo: 'Limpeza',
-            qtde: 295,
-        },
-        {
-            id: 3,
-            name: 'Produto 3',
-            tipo: 'Eletrônicos',
-            qtde: 0,
-        }
+        // {
+        //     id: 1,
+        //     name: 'Produto',
+        //     tipo: 'Diverso',
+        //     qtde: 150,
+        // },
+        // {
+        //     id: 2,
+        //     name: 'Produto 2',
+        //     tipo: 'Limpeza',
+        //     qtde: 295,
+        // },
+        // {
+        //     id: 3,
+        //     name: 'Produto 3',
+        //     tipo: 'Eletrônicos',
+        //     qtde: 0,
+        // }
     ];
 
     const columns = [
@@ -80,7 +80,7 @@ function Produtos() {
                 <EmptyState
                     title="Nenhum produto cadastrado"
                     description="Cadastre seu primeiro produto para começar."
-                    icon="bi-box-seam"
+                    icon={<i className="bi bi-box-seam"></i>}
                     actionLabel="Novo produto"
                     onAction={handleAdd}
                 />

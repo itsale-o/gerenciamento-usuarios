@@ -4,23 +4,23 @@ import Button from "../Button/Button";
 function EmptyState({
     title="Nenhum registro encontrado",
     description="Não existem registros para exibir",
-    icon="bi-inbox",
+    icon,
     actionLabel,
-    onAction
+    onClick
 }) {
     return (
         <div className="empty-state">
             <div className="empty-state-icon">
-                <i className={`bi ${icon}`}></i>
+                {icon}
             </div>
 
             <h2>{title}</h2>
             <p>{description}</p>
 
-            {onAction && (
+            {onClick && (
                 <Button
-                    icon="bx-plus"
-                    onClick={onAction}
+                    icon={<i className="bx bx-plus"></i>}
+                    onClick={onClick}
                     variant="add"
                 >
                     {actionLabel}

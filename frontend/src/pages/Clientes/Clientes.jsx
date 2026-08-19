@@ -1,5 +1,7 @@
 import './Clientes.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import ListPage from "../../components/ListPage/ListPage";
 import ListHeader from '../../components/ListHeader/ListHeader';
 import ListToolbar from '../../components/ListToolbar/ListToolbar';
@@ -9,9 +11,10 @@ import EmptyState from '../../components/EmptyState/EmptyState';
 
 function Clientes() {
     const [currentPage, setCurrentPage] = useState(1);
+    const navigate = useNavigate();
 
     function handleAdd() {
-        console.log("Adicionar Cliente");
+        navigate('/clientes/novo');
     }
 
     function handleSearch(event) {
@@ -59,7 +62,7 @@ function Clientes() {
                 title="Clientes"
                 description="Gerencie os clientes cadastrados e cadastre novos clientes"
                 addLabel="Novo Cliente"
-                onAdd={handleAdd}
+                onClick={handleAdd}
             />
 
             <ListToolbar
@@ -85,9 +88,9 @@ function Clientes() {
                 <EmptyState
                     title="Nenhum cliente cadastrado"
                     description="Cadastre seu primeiro cliente para começar."
-                    icon="bi-people"
+                    icon={<i className="bi bi-people"></i>}
                     actionLabel="Novo cliente"
-                    onAction={handleAdd}
+                    onClick={handleAdd}
                 />
             )}
         </ListPage>

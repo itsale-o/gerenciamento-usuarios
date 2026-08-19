@@ -34,9 +34,8 @@ function Header() {
                     </button>
                     {open && (
                         <ul className="dropdown-menu dropdown-menu-end show">
-                            <li><a className="dropdown-item" href="#">Action</a></li>
-                            <li><a className="dropdown-item" href="#">Another action</a></li>
-                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                            <li><a className="dropdown-item" href="#">Perfil</a></li>
+                            <li><a className="dropdown-item" href="#">Sair</a></li>
                         </ul>
                     )}
                     
