@@ -45,8 +45,17 @@ h3 {
     cursor: pointer;
 }
 
-.form-control,
-.form-select {
-    border: solid 1px var(--border-color);
+.form-field .form-control,
+.form-field .form-select {
     height: 42px;
+    border: solid 1px #D9DDE3;
+    border-radius: 7px;
+    box-shadow: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-field .form-control:focus,
+.form-field .form-select:focus {
+    border-color: #6C63FF;
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, .10);
 }

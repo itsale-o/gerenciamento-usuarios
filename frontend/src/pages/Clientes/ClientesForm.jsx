@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import Form from "../../components/Form/Form";
 import FormField from "../../components/Form/FormField";
 import "./ClientesForm.css";
+import { buscarCep } from "../../services/viaCep";
 
 function ClientesForm() {
     const [form, setForm] = useState({
@@ -17,14 +19,36 @@ function ClientesForm() {
         cidade: "",
         estado: ""
     })
+    const navigate = useNavigate();
 
-    function handleChange(event) {
+    async function handleChange(event) {
         const { name, value } = event.target;
 
-        setForm({
-            ...form,
+        setForm(prev => ({
+            ...prev,
             [name]: value
-        });
+        }));
+
+        if (name === "cep") {
+            const cep = value.replace(/\D/g, "");
+
+            if (cep.length === 8) {
+                try {
+                    const endereco = await buscarCep(cep);
+
+                    setForm(prev => ({
+                        ...prev,
+                        logradouro: endereco.logradouro,
+                        bairro: endereco.bairro,
+                        cidade: endereco.localidade,
+                        estado: endereco.uf
+                    }));
+
+                } catch (error) {
+                    console.error("Erro ao buscar CEP:", error);
+                }
+            }
+        }
     }
 
     function handleSubmit(event) {
@@ -32,8 +56,16 @@ function ClientesForm() {
         console.log(form);
     }
 
+    function handleCancel() {
+        navigate('/clientes');
+    }
+
     return (
-        <Form title="Cadastrar cliente" onSubmit={handleSubmit}>
+        <Form 
+            title="Cadastrar cliente" 
+            onSubmit={handleSubmit}
+            onCancel={handleCancel}
+        >
             <div className="form-group">
                 <FormField
                     label="Nome"
@@ -123,7 +155,7 @@ function ClientesForm() {
                     type="select"
                     value={form.estado}
                     onChange={handleChange}
-                    placeholder="UF"
+                    placeholder="-----"
                     required
                     colSpan={2}
                     options={[
@@ -167,13 +199,6 @@ function ClientesForm() {
                     colSpan={10}
                 />
             </div>
-            
-
-                
-            {/* <div className="form-group">
-                
-            </div> */}
-            
         </Form>
     )
 }

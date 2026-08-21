@@ -22,27 +22,27 @@ function Clientes() {
     }
 
     const clients = [
-        // {
-        //     id: 1,
-        //     name: 'João da Silva',
-        //     document: '123.456.789-00',
-        //     phone: '(12) 99999-9999',
-        //     status: 'Ativo'
-        // },
-        // {
-        //     id: 2,
-        //     name: 'Maria Oliveira',
-        //     document: '987.654.321-00',
-        //     phone: '(12) 98888-8888',
-        //     status: 'Ativo'
-        // },
-        // {
-        //     id: 3,
-        //     name: 'Pedro Santos',
-        //     document: '456.789.123-00',
-        //     phone: '(12) 97777-7777',
-        //     status: 'Inativo'
-        // }
+        {
+            id: 1,
+            name: 'João da Silva',
+            document: '123.456.789-00',
+            phone: '(12) 99999-9999',
+            status: 'Ativo'
+        },
+        {
+            id: 2,
+            name: 'Maria Oliveira',
+            document: '987.654.321-00',
+            phone: '(12) 98888-8888',
+            status: 'Ativo'
+        },
+        {
+            id: 3,
+            name: 'Pedro Santos',
+            document: '456.789.123-00',
+            phone: '(12) 97777-7777',
+            status: 'Inativo'
+        }
     ];
 
     const columns = [

@@ -27,7 +27,7 @@ function FormField({
                     value={value}
                     onChange={onChange}
                     required={required}
-                    className="form-select form-control"
+                    className="form-select"
                 >
                     <option value="">
                         {placeholder || "Selecione uma opção"}

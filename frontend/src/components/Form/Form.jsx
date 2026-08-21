@@ -1,7 +1,7 @@
 import "./Form.css";
 import Button from "../Button/Button"
 
-function Form({ title, children, onSubmit }) {
+function Form({ title, children, onSubmit, onCancel }) {
     return (
         <form  onSubmit={onSubmit} className="form">
             <div className="form-header">
@@ -14,16 +14,15 @@ function Form({ title, children, onSubmit }) {
 
             <div className="form-footer mt-5">
                 <Button
-                    icon={<i className="bx bx-plus"></i>}
-                    onClick="{onAction}"
+                    type="submit"
                     variant="submit"
                 >
                     Salvar
                 </Button> 
 
                 <Button
-                    icon={<i className="bx bx-plus"></i>}
-                    onClick="{onAction}"
+                    type="button"
+                    onClick={onCancel}
                     variant="cancel"
                 >
                     Cancelar

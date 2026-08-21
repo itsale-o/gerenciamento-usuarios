@@ -24,6 +24,12 @@
     --btn-add: #198754;
     --btn-add-hover: #177A4C;
 
+    --btn-submit: #2E8B57;
+    --btn-submit-hover: #297D4E;
+
+    --btn-cancel: #64748B;
+    --btn-cancel-hover: #5A687D;
+
     /* Typography */
     --font-family: "Inter", sans-serif;
 }

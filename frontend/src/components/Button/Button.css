@@ -17,3 +17,21 @@
 .add:hover {
     background-color: var(--btn-add-hover);
 }
+
+.submit {
+    background-color: var(--btn-submit);
+    color: var(--surface-color);
+}
+
+.submit:hover {
+    background-color: var(--btn-submit-hover);
+}
+
+.cancel {
+    color: var(--surface-color);
+    background-color: var(--btn-cancel);
+}
+
+.cancel:hover {
+    background-color: var(--btn-cancel-hover);
+}
