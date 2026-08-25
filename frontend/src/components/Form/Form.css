@@ -59,3 +59,7 @@ h3 {
     border-color: #6C63FF;
     box-shadow: 0 0 0 3px rgba(108, 99, 255, .10);
 }
+
+.form-field textarea.form-control {
+    height: auto;
+}

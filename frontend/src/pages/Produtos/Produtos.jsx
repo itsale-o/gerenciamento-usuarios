@@ -1,5 +1,7 @@
 import "./Produtos.css";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import ListPage from "../../components/ListPage/ListPage";
 import ListHeader from "../../components/ListHeader/ListHeader";
 import ListToolbar from "../../components/ListToolbar/ListToolbar";
@@ -9,9 +11,10 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 
 function Produtos() {
     const [currentPage, setCurrentPage] = useState(1);
+    const navigate = useNavigate();
 
     function handleAdd() {
-        console.log("Adicionar Produto");
+        navigate('/produtos/novo');
     }
 
     function handleSearch(event) {
@@ -19,24 +22,24 @@ function Produtos() {
     }
 
     const products = [
-        // {
-        //     id: 1,
-        //     name: 'Produto',
-        //     tipo: 'Diverso',
-        //     qtde: 150,
-        // },
-        // {
-        //     id: 2,
-        //     name: 'Produto 2',
-        //     tipo: 'Limpeza',
-        //     qtde: 295,
-        // },
-        // {
-        //     id: 3,
-        //     name: 'Produto 3',
-        //     tipo: 'Eletrônicos',
-        //     qtde: 0,
-        // }
+        {
+            id: 1,
+            name: 'Produto',
+            tipo: 'Diverso',
+            qtde: 150,
+        },
+        {
+            id: 2,
+            name: 'Produto 2',
+            tipo: 'Limpeza',
+            qtde: 295,
+        },
+        {
+            id: 3,
+            name: 'Produto 3',
+            tipo: 'Eletrônicos',
+            qtde: 0,
+        }
     ];
 
     const columns = [
@@ -55,7 +58,7 @@ function Produtos() {
                 title="Produtos"
                 description="Gerencie seus produtos cadastrados e cadastre novos produtos"
                 addLabel="Novo Produto"
-                onAdd={handleAdd}
+                onClick={handleAdd}
             />
 
             <ListToolbar
@@ -82,7 +85,7 @@ function Produtos() {
                     description="Cadastre seu primeiro produto para começar."
                     icon={<i className="bi bi-box-seam"></i>}
                     actionLabel="Novo produto"
-                    onAction={handleAdd}
+                    onClick={handleAdd}
                 />
             )}
         </ListPage>

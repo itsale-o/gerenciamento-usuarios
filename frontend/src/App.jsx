@@ -6,17 +6,20 @@ import Clientes from './pages/Clientes/Clientes';
 import Produtos from './pages/Produtos/Produtos';
 import Configuracao from './pages/Configuracao/Configuracao';
 import ClientesForm from './pages/Clientes/ClientesForm';
+import ProdutosForm from './pages/Produtos/ProdutosForm';
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Login />} />
                 <Route element={<Layout />}>
-                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/clientes" element={<Clientes />} />
-                    <Route path="/produtos" element={<Produtos />} />
-                    <Route path="/configuracoes" element={<Configuracao />} />
                     <Route path="/clientes/novo" element={<ClientesForm />} />
+                    <Route path="/produtos" element={<Produtos />} />
+                    <Route path="/produtos/novo" element={<ProdutosForm />} />
+                    <Route path="/configuracoes" element={<Configuracao />} />
                 </Route>
             </Routes>
         </BrowserRouter>

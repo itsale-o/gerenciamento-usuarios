@@ -19,7 +19,7 @@ function Header() {
     }, []);
 
     return (
-        <header className="header">
+        <nav className="header">
             <div className="header-menu">
                 <div className="dropdown" ref={dropdownRef}>
                     <button 
@@ -41,7 +41,7 @@ function Header() {
                     
                 </div>
             </div>
-        </header>
+        </nav>
     );
 }
 

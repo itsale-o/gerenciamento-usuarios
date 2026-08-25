@@ -17,6 +17,7 @@
     display: flex;
     align-items: center;
     gap: .5rem;
+    color: var(--text-color) !important;
 }
 
 .avatar {
@@ -24,6 +25,7 @@
     align-items: center;
     justify-content: center;
     border: solid 1px var(--primary-color);
+    color: var(--text-color);
     border-radius: 50%;
     width: 40px;
     height: 40px;

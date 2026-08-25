@@ -9,7 +9,8 @@ function FormField({
     placeholder,
     required=false,
     colSpan=12,
-    options=[]
+    options=[],
+    rows=4
 }) {
     return (
         <div 
@@ -42,6 +43,17 @@ function FormField({
                         </option>
                     ))}
                 </select>
+            ) : type === "textarea" ? (
+                <textarea 
+                    name={name} 
+                    id={name}
+                    value={value}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    required={required}
+                    rows={rows}
+                    className="form-control"
+                />
             ) : (
                 <input 
                     id={name}

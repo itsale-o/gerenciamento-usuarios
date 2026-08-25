@@ -30,6 +30,9 @@
     --btn-cancel: #64748B;
     --btn-cancel-hover: #5A687D;
 
+    --login-btn: #1E3A5F;
+    --login-btn-hover: #1B3555;
+
     /* Typography */
     --font-family: "Inter", sans-serif;
 }
