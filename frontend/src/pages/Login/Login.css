@@ -35,10 +35,16 @@
   gap: 10px;
 }
 
+.logo-img {
+  max-height: 56px;
+  max-width: 220px;
+  object-fit: contain;
+}
+
 .logo-text {
   font-size: clamp(1.15rem, 2.5vw, 1.5rem);
   letter-spacing: 1px;
-  color: #2E7DD1;
+  color: var(--brand-logo-text, #2E7DD1);
   font-weight: 500;
 }
 
@@ -137,7 +143,7 @@
 .btn-login {
   height: 44px;
   border-radius: 6px;
-  background-color: #1c2733;
+  background-color: var(--brand-primary, #1c2733);
   color: #fff;
   font-weight: 700;
   font-size: 0.95rem;
@@ -146,7 +152,7 @@
 }
 
 .btn-login:hover {
-  background-color: #2b3a4a;
+  background-color: var(--brand-primary-hover, #2b3a4a);
 }
 
 .link-senha {
@@ -156,7 +162,7 @@
 }
 
 .link-senha:hover {
-  color: #2E7DD1;
+  color: var(--brand-primary, #2E7DD1);
   text-decoration: underline;
 }
 
@@ -204,7 +210,7 @@
   flex-direction: column;
   width: 60%;
   min-width: 0;
-  background-color: #1c2733;
+  background-color: var(--brand-primary, #1c2733);
 }
 
 .right-content {
@@ -259,7 +265,7 @@
 }
 
 .play-btn:hover {
-  background: rgba(76, 175, 80, 0.85);
+  background: var(--brand-accent, #4CAF50);
 }
 
 .btn-whatsapp {
@@ -276,15 +282,15 @@
 }
 
 .btn-whatsapp:hover {
-  background-color: #4CAF50;
+  background-color: var(--brand-accent, #4CAF50);
 }
 
 .footer-strip {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1px;
-  background-color: #2b3a4a;
-  border-top: 1px solid #2b3a4a;
+  background-color: var(--brand-primary-hover, #2b3a4a);
+  border-top: 1px solid var(--brand-primary-hover, #2b3a4a);
   margin-top: auto;
 }
 
@@ -305,7 +311,7 @@
 
 .footer-tag {
   display: inline-block;
-  background-color: #4CAF50;
+  background-color: var(--brand-accent, #4CAF50);
   color: #fff;
   font-weight: 700;
   font-size: 0.85rem;
@@ -315,7 +321,7 @@
 }
 
 .footer-card {
-  background-color: #1c2733;
+  background-color: var(--brand-primary, #1c2733);
   padding: 1.5rem 1.25rem;
   display: flex;
   flex-direction: column;
@@ -336,7 +342,7 @@
 }
 
 .footer-card a {
-  color: #4CAF50;
+  color: var(--brand-accent, #4CAF50);
   font-size: 0.78rem;
   font-weight: 700;
   text-decoration: none;
@@ -345,6 +351,43 @@
 
 .footer-card a:hover {
   text-decoration: underline;
+}
+
+/* ===================== LOADING (branding do tenant) ===================== */
+
+.login-loading .right-panel {
+  background-color: #1c2733;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e9ecef 25%, #f4f5f6 37%, #e9ecef 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+  border-radius: 6px;
+}
+
+.skeleton-logo {
+  width: 160px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-input {
+  width: 100%;
+  max-width: 360px;
+  height: 44px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-btn {
+  width: 100%;
+  max-width: 360px;
+  height: 44px;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
 }
 
 /* ===================== RESPONSIVO ===================== */
@@ -446,6 +489,7 @@
   }
 }
 
+/* Telas muito grandes (monitores 4K/ultrawide) — evita o formulário esticar demais */
 @media (min-width: 1600px) {
   .login-container {
     max-width: 1800px;

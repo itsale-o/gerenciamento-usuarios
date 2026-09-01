@@ -1,28 +1,80 @@
 import './Login.css';
 
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getTenantBranding } from '../../services/brandingService';
 
 function Login() {
     const navigate = useNavigate();
+    const [branding, setBranding] = useState(null);
+    const [loadingBranding, setLoadingBranding] = useState(true);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        getTenantBranding().then((data) => {
+            if (isMounted) {
+                setBranding(data);
+                setLoadingBranding(false);
+            }
+        });
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     function handleLogin() {
         navigate('/dashboard');
     }
 
+    // Enquanto não sabemos o tenant, exibe um esqueleto simples
+    // (evita "piscar" a marca errada antes do branding certo chegar).
+    if (loadingBranding) {
+        return (
+            <div className="login-container login-loading">
+                <div className="left-panel">
+                    <div className="skeleton skeleton-logo" />
+                    <div className="skeleton skeleton-input" />
+                    <div className="skeleton skeleton-input" />
+                    <div className="skeleton skeleton-btn" />
+                </div>
+                <div className="right-panel" />
+            </div>
+        );
+    }
+
+    // Variáveis CSS dinâmicas: aplicadas só neste componente via inline style,
+    // então cada tenant pode ter sua própria paleta sem precisar de build separado.
+    const themeVars = {
+        '--brand-primary': branding.colors.primary,
+        '--brand-primary-hover': branding.colors.primaryHover,
+        '--brand-accent': branding.colors.accent,
+        '--brand-logo-text': branding.colors.logoText,
+    };
+
     return (
-        <div className="login-container">
+        <div className="login-container" style={themeVars}>
             {/* ===================== PAINEL ESQUERDO ===================== */}
             <div className="left-panel">
                 <div className="logo">
-                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M28 4 L40 16 L28 16 Z" fill="#2E7DD1" />
-                        <path d="M52 28 L40 40 L40 28 Z" fill="#F2A93B" />
-                        <path d="M28 52 L16 40 L28 40 Z" fill="#4CAF50" />
-                        <path d="M4 28 L16 16 L16 28 Z" fill="#E5473A" />
-                    </svg>
-                    <span className="logo-text">
-                        WEB<strong>SOFT</strong>
-                    </span>
+                    {branding.logoUrl ? (
+                        // Logo real do tenant, vinda da API
+                        <img src={branding.logoUrl} alt={branding.companyName} className="logo-img" />
+                    ) : (
+                        // Fallback: pinwheel genérico + nome do tenant em texto
+                        <>
+                            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M28 4 L40 16 L28 16 Z" fill="var(--brand-logo-text)" />
+                                <path d="M52 28 L40 40 L40 28 Z" fill="#F2A93B" />
+                                <path d="M28 52 L16 40 L28 40 Z" fill="var(--brand-accent)" />
+                                <path d="M4 28 L16 16 L16 28 Z" fill="#E5473A" />
+                            </svg>
+                            <span className="logo-text">
+                                {branding.companyName}
+                            </span>
+                        </>
+                    )}
                 </div>
 
                 <form className="login-form" onSubmit={(e) => e.preventDefault()}>
@@ -90,7 +142,7 @@ function Login() {
             {/* ===================== PAINEL DIREITO ===================== */}
             <div className="right-panel">
                 <div className="right-content">
-                    <h2>Soluções Inteligentes para seu Negócio!</h2>
+                    <h2>{branding.heroTitle}</h2>
 
                     <div className="hero-visual">
                         <svg viewBox="0 0 400 220" className="hero-svg" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +163,7 @@ function Login() {
                         </button>
                     </div>
 
-                    <a href="#" className="btn-whatsapp">
+                    <a href={branding.whatsappLink} className="btn-whatsapp">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.4L2 22l4.7-1.6a11 11 0 0 0 13.8-16.9zM12 20a9 9 0 0 1-4.6-1.3l-.3-.2-3 1 1-2.9-.2-.3A9 9 0 1 1 12 20zm4.9-6.6c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4-.1-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3s1 2.7 1.1 2.9c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z" /></svg>
                         Entrar em contato
                     </a>
