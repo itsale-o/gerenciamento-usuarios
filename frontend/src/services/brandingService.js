@@ -49,7 +49,6 @@ const DEFAULT_BRANDING = {
     primary: '#1c2733',      // fundo do painel direito / botão
     primaryHover: '#2b3a4a',
     accent: '#4CAF50',       // destaques (tag "nas Suas Mãos!", play button hover)
-    logoText: '#2E7DD1',
   },
 };
 
@@ -63,7 +62,6 @@ async function fetchBrandingFromApi(tenantId) {
   // return res.json();
 
   // --- MOCK enquanto a API não existe ---
-  await new Promise((resolve) => setTimeout(resolve, 600)); // simula latência
 
   if (!tenantId) {
     return DEFAULT_BRANDING;
@@ -77,12 +75,6 @@ async function fetchBrandingFromApi(tenantId) {
       companyName: 'Cliente Local',
       logoUrl: '/favicon.svg',
       heroTitle: 'A plataforma do seu negócio local!',
-      colors: {
-        primary: '#243b53',
-        primaryHover: '#334e68',
-        accent: '#2cb1a6',
-        logoText: '#2e7dd1',
-      },
     };
   }
 
@@ -94,12 +86,6 @@ async function fetchBrandingFromApi(tenantId) {
       tenantId,
       companyName: 'Cliente 1 Tech',
       heroTitle: 'A plataforma completa para o seu negócio!',
-      colors: {
-        primary: '#0f2e1f',
-        primaryHover: '#1a4630',
-        accent: '#e0a72d',
-        logoText: '#e0a72d',
-      },
     };
   }
 

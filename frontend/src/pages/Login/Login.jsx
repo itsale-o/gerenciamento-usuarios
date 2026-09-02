@@ -50,7 +50,6 @@ function Login() {
         '--brand-primary': branding.colors.primary,
         '--brand-primary-hover': branding.colors.primaryHover,
         '--brand-accent': branding.colors.accent,
-        '--brand-logo-text': branding.colors.logoText,
     };
 
     return (
@@ -60,21 +59,16 @@ function Login() {
                 <div className="logo">
                     {branding.logoUrl ? (
                         // Logo real do tenant, vinda da API
-                        <img src={branding.logoUrl} alt={branding.companyName} className="logo-img" />
+                        <img src={branding.logoUrl} alt="" className="logo-img" />
                     ) : (
-                        // Fallback: pinwheel genérico + nome do tenant em texto
-                        <>
-                            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M28 4 L40 16 L28 16 Z" fill="var(--brand-logo-text)" />
-                                <path d="M52 28 L40 40 L40 28 Z" fill="#F2A93B" />
-                                <path d="M28 52 L16 40 L28 40 Z" fill="var(--brand-accent)" />
-                                <path d="M4 28 L16 16 L16 28 Z" fill="#E5473A" />
-                            </svg>
-                            <span className="logo-text">
-                                {branding.companyName}
-                            </span>
-                        </>
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M28 4 L40 16 L28 16 Z" fill="#2E7DD1" />
+                            <path d="M52 28 L40 40 L40 28 Z" fill="#F2A93B" />
+                            <path d="M28 52 L16 40 L28 40 Z" fill="var(--brand-accent)" />
+                            <path d="M4 28 L16 16 L16 28 Z" fill="#E5473A" />
+                        </svg>
                     )}
+                    <span className="logo-text">{branding.companyName}</span>
                 </div>
 
                 <form className="login-form" onSubmit={(e) => e.preventDefault()}>

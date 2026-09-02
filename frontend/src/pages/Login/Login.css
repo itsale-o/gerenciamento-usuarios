@@ -44,7 +44,7 @@
 .logo-text {
   font-size: clamp(1.15rem, 2.5vw, 1.5rem);
   letter-spacing: 1px;
-  color: var(--brand-logo-text, #2E7DD1);
+  color: #1c2733;
   font-weight: 500;
 }
 
