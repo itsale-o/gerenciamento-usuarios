@@ -6,9 +6,9 @@ import "./Layout.css";
 function Layout() {
     return (
         <div className="layout">
-            <Sidebar />
+            <Header />
             <div className="layout-main">
-                <Header />
+                <Sidebar />
 
                 <main className="layout-content">
                     <Outlet />

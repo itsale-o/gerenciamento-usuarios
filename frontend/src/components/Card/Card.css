@@ -1,0 +1,98 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 293px;
+    padding: 24px;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(31, 41, 55, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-header,
+.card-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+.card-header {
+    margin-bottom: 12px;
+}
+
+.card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(59, 130, 160, 0.09);
+    color: var(--secondary-color);
+}
+
+.card-icon i {
+    font-size: 2rem;
+}
+
+.card h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.card-accent {
+    width: 50px;
+    height: 2px;
+    margin: 10px auto 22px;
+    background-color: var(--accent-color);
+    border-radius: 999px;
+}
+
+.card-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.card-footer .btn {
+    flex: 1;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.card-footer .btn.button1 {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    border: 1px solid var(--primary-color);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.card-footer .btn.button1:hover {
+    background-color: var(--login-btn-hover);
+    border-color: var(--login-btn-hover);
+}
+
+.card-footer .btn.button2 {
+    background-color: var(--surface-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.card-footer .btn.button2:hover {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+}

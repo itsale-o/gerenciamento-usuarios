@@ -20,6 +20,9 @@ function Header() {
 
     return (
         <nav className="header">
+            <div className="header-logo">
+                WebSoft
+            </div>
             <div className="header-menu">
                 <div className="dropdown" ref={dropdownRef}>
                     <button 
