@@ -25,7 +25,7 @@ function Dashboard() {
                     icon={<i class='bx bx-notepad'></i>}
                     button1={{
                         label: "Listar",
-                        url:"/"
+                        url:"/erp"
                     }}
                 />
 

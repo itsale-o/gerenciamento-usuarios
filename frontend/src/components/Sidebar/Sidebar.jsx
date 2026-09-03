@@ -10,7 +10,7 @@ function Sidebar() {
         <aside id="sidebar" className={expanded ? 'expand' : ''}>
             <div className="d-flex justify-content-between p-4">
                 <div className="sidebar-logo">
-                    <a href="">Meu Sistema</a>
+                    <a href="">WebSoft</a>
                 </div>
 
                 <button 
@@ -34,23 +34,30 @@ function Sidebar() {
                 </li>
 
                 <li className="sidebar-item">
-                    <Link to="/clientes" className="sidebar-link">
-                        <i className='bx bxs-user-circle'></i>
-                        <span>Clientes</span>
+                    <Link to="/faturas" className="sidebar-link">
+                        <i class='bx bx-dollar'></i>
+                        <span>Faturas</span>
                     </Link>
                 </li>
 
                 <li className="sidebar-item">
                     <Link to="/produtos" className="sidebar-link">
                         <i className='bx bxs-package'></i>
-                        <span>Produtos</span>
+                        <span>Planos</span>
                     </Link>
                 </li>
 
                 <li className="sidebar-item">
                     <Link to="/configuracoes" className="sidebar-link">
                         <i className='bx bxs-cog'></i>
-                        <span>Configurações</span>
+                        <span>Suporte</span>
+                    </Link>
+                </li>
+
+                <li className="sidebar-item">
+                    <Link to="/configuracoes" className="sidebar-link">
+                        <i className='bx bxs-cog'></i>
+                        <span>Conta</span>
                     </Link>
                 </li>
 
