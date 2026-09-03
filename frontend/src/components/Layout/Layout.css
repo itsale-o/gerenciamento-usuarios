@@ -1,6 +1,8 @@
 .layout {
     display: flex;
     min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .layout-main {
@@ -13,4 +15,15 @@
 .layout-content {
     width: 100%;
     padding: 1rem;
+    min-width: 0;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        display: block;
+    }
+
+    .layout-content {
+        padding: .85rem;
+    }
 }

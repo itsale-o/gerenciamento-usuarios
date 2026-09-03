@@ -9,7 +9,8 @@
 
 .list-toolbar-search {
     position: relative;
-    width: 350px;
+    width: min(350px, 100%);
+    min-width: 0;
 }
 
 .list-toolbar-search i {
@@ -40,4 +41,19 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+}
+
+@media (max-width: 600px) {
+    .list-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .list-toolbar-search {
+        width: 100%;
+    }
+
+    .list-toolbar-filters {
+        flex-wrap: wrap;
+    }
 }

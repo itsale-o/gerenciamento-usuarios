@@ -34,6 +34,25 @@ h3 {
     gap: .5rem;
 }
 
+@media (max-width: 600px) {
+    .form-group {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group > * {
+        grid-column: 1 / -1;
+    }
+
+    .form-footer {
+        justify-content: stretch;
+        flex-wrap: wrap;
+    }
+
+    .form-footer .btn {
+        flex: 1 1 140px;
+    }
+}
+
 .divider {
     width: 100%;
     height: 1px;

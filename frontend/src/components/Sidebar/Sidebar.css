@@ -236,3 +236,85 @@ button.sidebar-link:hover {
     padding-left: 4.5rem;
     font-size: 0.9rem;
 }
+
+@media (max-width: 768px) {
+    #sidebar,
+    #sidebar.expand,
+    #sidebar:not(.expand) {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+    }
+
+    .sidebar-topbar,
+    #sidebar:not(.expand) .sidebar-topbar {
+        min-height: 64px;
+        height: 64px;
+        padding: .75rem 1rem;
+        flex-direction: row;
+    }
+
+    #sidebar:not(.expand) .sidebar-brand span,
+    #sidebar.expand .sidebar-brand span {
+        display: inline;
+    }
+
+    #sidebar:not(.expand) .sidebar-brand-loading {
+        width: 150px;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        align-items: stretch;
+        gap: .25rem;
+        padding: .35rem .5rem .55rem;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    .sidebar-item {
+        flex: 0 0 auto;
+    }
+
+    #sidebar.expand a.sidebar-link,
+    #sidebar:not(.expand) a.sidebar-link,
+    #sidebar.expand button.sidebar-link,
+    #sidebar:not(.expand) button.sidebar-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: .65rem .75rem;
+        text-align: center;
+    }
+
+    #sidebar:not(.expand) .sidebar-link i,
+    #sidebar.expand .sidebar-link i {
+        margin: 0 .4rem 0 0;
+    }
+
+    #sidebar:not(.expand) button.sidebar-link span,
+    #sidebar:not(.expand) a.sidebar-link span {
+        display: inline;
+    }
+}
+
+@media (max-width: 420px) {
+    .sidebar-brand {
+        font-size: 1rem;
+    }
+
+    .sidebar-brand-image,
+    .sidebar-brand svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    #sidebar:not(.expand) a.sidebar-link,
+    #sidebar:not(.expand) button.sidebar-link,
+    #sidebar.expand a.sidebar-link,
+    #sidebar.expand button.sidebar-link {
+        padding: .6rem .55rem;
+        font-size: .85rem;
+    }
+}
