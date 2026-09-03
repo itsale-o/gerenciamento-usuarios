@@ -3,6 +3,11 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.list-header-info {
+    min-width: 0;
 }
 
 .list-header-info h1 {
@@ -16,5 +21,17 @@
     margin: 0.35rem 0 0;
     color: var(--text-secondary-color);
     font-size: 0.95rem;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .list-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .list-header .btn {
+        align-self: flex-start;
+    }
 }
 

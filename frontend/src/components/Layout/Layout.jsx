@@ -1,14 +1,30 @@
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getTenantBranding } from "../../services/brandingService";
 import "./Layout.css";
 
 function Layout() {
+    const [branding, setBranding] = useState(null);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        getTenantBranding().then((data) => {
+            if (isMounted) setBranding(data);
+        });
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
     return (
         <div className="layout">
-            <Header />
+            <Sidebar branding={branding} />
             <div className="layout-main">
-                <Sidebar />
+                <Header />
 
                 <main className="layout-content">
                     <Outlet />
