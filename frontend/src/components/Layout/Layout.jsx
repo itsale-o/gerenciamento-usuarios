@@ -24,7 +24,7 @@ function Layout() {
         <div className="layout">
             <Sidebar branding={branding} />
             <div className="layout-main">
-                <Header branding={branding} />
+                <Header />
 
                 <main className="layout-content">
                     <Outlet />

@@ -1,7 +1,7 @@
 import './Header.css';
 import { useState, useEffect, useRef } from 'react';
 
-function Header({ branding }) {
+function Header() {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
     const dropdownRef = useRef(null);
