@@ -110,7 +110,7 @@ function Dashboard() {
 
             
 
-            <section className="stats-grid">
+            {/* <section className="stats-grid">
                 <div className="stat-card">
                     <span className="stat-label">Usuários</span>
                     <strong>128</strong>
@@ -174,7 +174,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </>
     );
 }
