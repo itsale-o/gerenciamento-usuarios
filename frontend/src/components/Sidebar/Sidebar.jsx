@@ -1,5 +1,5 @@
 import './Sidebar.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
 const SIDEBAR_EXPANDED_KEY = 'sidebar-expanded';
@@ -59,38 +59,24 @@ function Sidebar({ branding }) {
             
             <ul className="sidebar-nav">
                 <li className="sidebar-item">
-                    <Link to="/dashboard" className="sidebar-link">
-                        <i className='bx bxs-home'></i>
-                        <span>Início</span>
-                    </Link>
+                    <NavLink to="/dashboard" className="sidebar-link">
+                        <i className='bx bxs-dashboard'></i>
+                        <span>Painel</span>
+                    </NavLink>
                 </li>
 
                 <li className="sidebar-item">
-                    <Link to="/faturas" className="sidebar-link">
-                        <i className='bx bxs-receipt'></i>
-                        <span>Faturas</span>
-                    </Link>
+                    <NavLink to="/produtos" className="sidebar-link">
+                        <i className='bx bxs-store'></i>
+                        <span>Loja</span>
+                    </NavLink>
                 </li>
 
                 <li className="sidebar-item">
-                    <Link to="/planos" className="sidebar-link">
-                        <i className='bx bxs-grid-alt'></i>
-                        <span>Planos</span>
-                    </Link>
-                </li>
-
-                <li className="sidebar-item">
-                    <Link to="/suporte" className="sidebar-link">
+                    <NavLink to="/suporte" className="sidebar-link">
                         <i className='bx bxs-help-circle'></i>
                         <span>Suporte</span>
-                    </Link>
-                </li>
-
-                <li className="sidebar-item">
-                    <Link to="/conta" className="sidebar-link">
-                        <i className='bx bxs-user'></i>
-                        <span>Conta</span>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </aside>

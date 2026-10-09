@@ -21,7 +21,7 @@ function Dashboard() {
                 />
 
                 <Card
-                    title="ERP"
+                    title="Sistemas"
                     icon={<i class='bx bx-notepad'></i>}
                     button1={{
                         label: "Listar",
@@ -95,7 +95,7 @@ function Dashboard() {
                 />
 
                 <Card
-                    title="Suporte"
+                    title="Atendimento"
                     icon={<i class='bx bx-headphone' ></i>}
                     button1={{
                         label: "Gerenciar",

@@ -7,6 +7,7 @@ import Produtos from './pages/Produtos/Produtos';
 import Configuracao from './pages/Configuracao/Configuracao';
 import ClientesForm from './pages/Clientes/ClientesForm';
 import ProdutosForm from './pages/Produtos/ProdutosForm';
+import Suporte from './pages/Suporte/Suporte';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/clientes/novo" element={<ClientesForm />} />
                     <Route path="/produtos" element={<Produtos />} />
                     <Route path="/produtos/novo" element={<ProdutosForm />} />
+                    <Route path="/suporte" element={<Suporte />} />
                     <Route path="/configuracoes" element={<Configuracao />} />
                 </Route>
             </Routes>

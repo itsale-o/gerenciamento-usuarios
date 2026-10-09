@@ -1,95 +1,81 @@
 import "./Produtos.css";
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 
-import ListPage from "../../components/ListPage/ListPage";
-import ListHeader from "../../components/ListHeader/ListHeader";
-import ListToolbar from "../../components/ListToolbar/ListToolbar";
-import DataTable from "../../components/DataTable/DataTable";
-import Pagination from "../../components/Pagination/Pagination";
-import EmptyState from "../../components/EmptyState/EmptyState";
+const products = [
+    {
+        id: 1,
+        name: "Certificado Digital",
+        icon: "bx-certification",
+        setupPrice: "R$ 115,00",
+        monthlyPrice: "R$ 0,00",
+    },
+    {
+        id: 2,
+        name: "Integração Bancária",
+        icon: "bx-credit-card",
+        setupPrice: "R$ 500,00",
+        monthlyPrice: "R$ 250,00",
+    },
+    {
+        id: 3,
+        name: "Treinamento",
+        icon: "bx-book-open",
+        setupPrice: "R$ 500,00",
+        monthlyPrice: "R$ 0,00",
+    },
+    {
+        id: 4,
+        name: "Gestão Financeira",
+        icon: "bx-line-chart",
+        setupPrice: "R$ 500,00",
+        monthlyPrice: "R$ 250,00",
+    },
+    {
+        id: 5,
+        name: "CNPJ Novo",
+        icon: "bx-building-house",
+        setupPrice: "R$ 500,00",
+        monthlyPrice: "R$ 250,00",
+    },
+];
 
 function Produtos() {
-    const [currentPage, setCurrentPage] = useState(1);
-    const navigate = useNavigate();
-
-    function handleAdd() {
-        navigate('/produtos/novo');
-    }
-
-    function handleSearch(event) {
-        console.log(event.target.value);
-    }
-
-    const products = [
-        {
-            id: 1,
-            name: 'Produto',
-            tipo: 'Diverso',
-            qtde: 150,
-        },
-        {
-            id: 2,
-            name: 'Produto 2',
-            tipo: 'Limpeza',
-            qtde: 295,
-        },
-        {
-            id: 3,
-            name: 'Produto 3',
-            tipo: 'Eletrônicos',
-            qtde: 0,
-        }
-    ];
-
-    const columns = [
-        { key: 'name', label: 'Nome' },
-        { key: 'tipo', label: 'Tipo' },
-        { key: 'qtde', label: 'Quantidade em Estoque' },
-    ];
-
-    function handlePageChange(page) {
-        setCurrentPage(page);
-    }
-
     return (
-        <ListPage>
-            <ListHeader
-                title="Produtos"
-                description="Gerencie seus produtos cadastrados e cadastre novos produtos"
-                addLabel="Novo Produto"
-                onClick={handleAdd}
-            />
+        <section className="store-page" aria-labelledby="store-title">
+            <header className="store-header">
+                <h1 id="store-title">
+                    Loja
+                </h1>
+                <p>Escolha as soluções que sua empresa precisa.</p>
+            </header>
 
-            <ListToolbar
-                searchPlaceholder="Buscar produto..."
-                onSearch={handleSearch}
-            />
+            <div className="store-grid">
+                {products.map((product) => (
+                    <article className="store-card" key={product.id}>
+                        <div className="store-card-icon" aria-hidden="true">
+                            <i className={`bx ${product.icon}`}></i>
+                        </div>
+                        <h2>{product.name}</h2>
+                        <div className="store-card-accent"></div>
 
-            {products.length > 0 ? (
-                <>
-                    <DataTable
-                        columns={columns}
-                        data={products}
-                    />
+                        <dl className="store-card-prices">
+                            <div>
+                                <dt>Contratação:</dt>
+                                <dd>{product.setupPrice}</dd>
+                            </div>
+                            <div>
+                                <dt>Mensalidade:</dt>
+                                <dd>{product.monthlyPrice}</dd>
+                            </div>
+                        </dl>
 
-                    <Pagination
-                        currentPage={currentPage}
-                        totalPages={1}
-                        onPageChange={handlePageChange}
-                    />
-                </>
-            ) : (
-                <EmptyState
-                    title="Nenhum produto cadastrado"
-                    description="Cadastre seu primeiro produto para começar."
-                    icon={<i className="bi bi-box-seam"></i>}
-                    actionLabel="Novo produto"
-                    onClick={handleAdd}
-                />
-            )}
-        </ListPage>
-    )
+                        <button className="store-card-button mt-2" type="button">
+                            Contratar
+                        </button>
+                    </article>
+                ))}
+            </div>
+        </section>
+    );
 }
 
 export default Produtos;
