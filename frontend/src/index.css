@@ -2,7 +2,7 @@
     /* Brand */
     --primary-color: #1E3A5F;
     --secondary-color: #3B82A0;
-    --accent-color: #2CB1A6;
+    --accent-color: #3B82A0;
 
     /* Backgrounds */
     --background-color: #F5F7FA;
@@ -16,16 +16,16 @@
     --border-color: #E5E7EB;
 
     /* Status */
-    --success-color: #22C55E;
+    --success-color: #3B82A0;
     --warning-color: #F59E0B;
     --danger-color: #EF4444;
 
     /* Buttons */
-    --btn-add: #198754;
-    --btn-add-hover: #177A4C;
+    --btn-add: #1E3A5F;
+    --btn-add-hover: #1B3555;
 
-    --btn-submit: #2E8B57;
-    --btn-submit-hover: #297D4E;
+    --btn-submit: #1E3A5F;
+    --btn-submit-hover: #1B3555;
 
     --btn-cancel: #64748B;
     --btn-cancel-hover: #5A687D;
@@ -56,4 +56,3 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--background-color) !important;
 }
-

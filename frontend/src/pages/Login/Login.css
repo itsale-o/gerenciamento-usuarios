@@ -67,21 +67,32 @@
   box-sizing: border-box;
 }
 
-.form-field {
+.login-form > .form-field {
   position: relative;
   display: flex;
+  flex-direction: row;
   align-items: center;
+  width: 100%;
+  min-height: 44px;
 }
 
-.field-icon {
+.login-form > .form-field .field-icon {
   position: absolute;
   left: 14px;
+  top: 50%;
+  z-index: 1;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
   color: #8a94a3;
   pointer-events: none;
+  transform: translateY(-50%);
 }
 
-.form-field .form-control {
+.login-form > .form-field .form-control {
+  display: block;
   width: 100%;
   height: 44px;
   padding: 0 14px 0 40px;
@@ -92,7 +103,7 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.form-field .form-control:focus {
+.login-form > .form-field .form-control:focus {
   outline: none;
   border-color: #2E7DD1;
   box-shadow: 0 0 0 3px rgba(46, 125, 209, .12);
@@ -145,15 +156,30 @@
   height: 44px;
   border-radius: 6px;
   background-color: var(--brand-primary, #1c2733);
-  color: #fff;
+  color: #fff !important;
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.5px;
-  transition: background-color 0.2s;
+  border: 1px solid var(--brand-primary, #1E3A5F);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-login:hover,
+.btn-login:focus,
+.btn-login:focus-visible,
+.btn-login:active {
+  color: #fff !important;
 }
 
 .btn-login:hover {
   background-color: var(--brand-primary-hover, #2b3a4a);
+  border-color: var(--brand-primary-hover, #2b3a4a);
+  box-shadow: 0 4px 10px rgba(30, 58, 95, .18);
+}
+
+.btn-login:focus-visible {
+  outline: 3px solid rgba(59, 130, 160, .25);
+  outline-offset: 2px;
 }
 
 .link-senha {
@@ -273,7 +299,7 @@
 }
 
 .play-btn:hover {
-  background: var(--brand-accent, #4CAF50);
+  background: var(--brand-accent, #3B82A0);
 }
 
 .btn-whatsapp {
@@ -290,7 +316,7 @@
 }
 
 .btn-whatsapp:hover {
-  background-color: var(--brand-accent, #4CAF50);
+  background-color: var(--brand-accent, #3B82A0);
 }
 
 .footer-strip {
@@ -321,7 +347,7 @@
 
 .footer-tag {
   display: inline-block;
-  background-color: var(--brand-accent, #4CAF50);
+  background-color: var(--brand-accent, #3B82A0);
   color: #fff;
   font-weight: 700;
   font-size: 0.85rem;
@@ -352,7 +378,7 @@
 }
 
 .footer-card a {
-  color: var(--brand-accent, #4CAF50);
+  color: var(--brand-accent, #3B82A0);
   font-size: 0.78rem;
   font-weight: 700;
   text-decoration: none;
@@ -468,7 +494,7 @@
     padding-right: 0.75rem;
   }
 
-  .form-field .form-control {
+  .login-form > .form-field .form-control {
     height: 40px;
     font-size: 0.85rem;
   }
@@ -498,4 +524,3 @@
     gap: 1rem;
   }
 }
-

@@ -1,18 +1,14 @@
 import "./Form.css";
 import Button from "../Button/Button"
 
-function Form({ title, children, onSubmit, onCancel }) {
+function Form({ children, onSubmit, onCancel }) {
     return (
-        <form  onSubmit={onSubmit} className="form">
-            <div className="form-header">
-                <h3 className="mb-3">{title}</h3>
-            </div>
-
+        <form onSubmit={onSubmit} className="form">
             <div className="form-body">
                 {children}
             </div>
 
-            <div className="form-footer mt-5">
+            <div className="form-footer">
                 <Button
                     type="submit"
                     variant="submit"

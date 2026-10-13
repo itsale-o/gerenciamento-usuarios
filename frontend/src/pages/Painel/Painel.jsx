@@ -1,15 +1,10 @@
-import './Dashboard.css';
+import './Painel.css';
 
 import Card from '../../components/Card/Card';
 
-function Dashboard() {
+function Painel() {
     return (
         <>
-            <div className="page-title">
-                <h1>Boas-vindas, Usuário.</h1>
-                <p>Facilite sua rotina centralizando tudo no mesmo lugar.</p>
-            </div>
-
             <div className="cards">
                 <Card
                     title="Geral"
@@ -180,4 +175,4 @@ function Dashboard() {
 }
 
 
-export default Dashboard;
+export default Painel;

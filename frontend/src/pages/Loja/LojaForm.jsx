@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Form from "../../components/Form/Form";
 import FormField from "../../components/Form/FormField";
 
-function ProdutosForm() {
+function LojaForm() {
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const selectedProduct = state?.product;
     const [form, setForm] = useState({
-        codigo: "",
-        nome: "",
-        descricao: "",
-    })
+        nome: selectedProduct?.name || "",
+        valorContratacao: selectedProduct?.setupPrice || "",
+        mensalidade: selectedProduct?.monthlyPrice || "",
+    });
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -32,46 +34,44 @@ function ProdutosForm() {
 
     return (
         <Form 
-            title="Cadastrar produto" 
             onSubmit={handleSubmit}
             onCancel={handleCancel}
         >
             <div className="form-group">
                 <FormField
-                    label="Código"
-                    name="codigo"
-                    value={form.codigo}
-                    onChange={handleChange}
-                    placeholder="Código"
-                    required
-                    colSpan={4}
-                />
-
-                <FormField
                     label="Nome"
                     name="nome"
                     value={form.nome}
                     onChange={handleChange}
-                    placeholder="Nome"
+                    placeholder="Nome do produto"
                     required
-                    colSpan={8}
+                    colSpan={6}
                 />
-            </div>
 
-            <div className="form-group">
                 <FormField
-                    type="textarea"
-                    label="Descrição"
-                    name="descricao"
-                    value={form.descricao}
+                    label="Valor de contratação"
+                    name="valorContratacao"
+                    type="text"
+                    value={form.valorContratacao}
                     onChange={handleChange}
-                    placeholder="Descrição"
-                    rows={6}
+                    placeholder="R$ 0,00"
                     required
+                    colSpan={3}
+                />
+
+                <FormField
+                    label="Mensalidade"
+                    name="mensalidade"
+                    type="text"
+                    value={form.mensalidade}
+                    onChange={handleChange}
+                    placeholder="R$ 0,00"
+                    required
+                    colSpan={3}
                 />
             </div>
         </Form>
     )
 }
 
-export default ProdutosForm;
+export default LojaForm;

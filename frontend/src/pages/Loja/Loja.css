@@ -3,27 +3,6 @@
     padding: 0;
 }
 
-.store-header {
-    margin-bottom: 25px;
-}
-
-.store-header h1 {
-    margin: 0;
-    color: #333;
-    font-size: 26px;
-    font-weight: 600;
-}
-
-.store-header h1 i {
-    margin-right: 0.5rem;
-    color: var(--secondary-color);
-}
-
-.store-header p {
-    margin: 0;
-    color: #888;
-}
-
 .store-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -104,6 +83,9 @@
 }
 
 .store-card-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: calc(100% - 1rem);
     margin-top: auto;
     padding: 0.6rem 0.75rem;
@@ -113,6 +95,7 @@
     color: var(--surface-color);
     cursor: pointer;
     font-size: 0.95rem;
+    text-decoration: none;
 }
 
 .store-card-button:hover {

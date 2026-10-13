@@ -35,6 +35,10 @@ function Header() {
                     <i className="bx bxs-help-circle" aria-hidden="true"></i>
                     <span>Suporte</span>
                 </NavLink>
+                <NavLink to="/gestor" className="primary-nav-link">
+                    <i className="bx bxs-briefcase" aria-hidden="true"></i>
+                    <span>Gestor</span>
+                </NavLink>
             </div>
 
             <div className="header-search">

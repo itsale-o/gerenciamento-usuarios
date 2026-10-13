@@ -21,7 +21,7 @@
 export function getTenantIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const fromQuery = params.get('tenant');
-  if (fromQuery) return fromQuery;
+  if (fromQuery && /^[a-z0-9][a-z0-9._-]{0,62}$/i.test(fromQuery)) return fromQuery;
 
   const host = window.location.hostname; // ex: cliente1.seusistema.com.br
   const parts = host.split('.');
@@ -31,7 +31,7 @@ export function getTenantIdFromUrl() {
   const isLocalOrIp = host === 'localhost' || host === '::1' || isIpv4;
   if (isLocalOrIp) return host;
 
-  return parts[0]; // "cliente1"
+  return /^[a-z0-9][a-z0-9-]{0,62}$/i.test(parts[0]) ? parts[0] : null;
 }
 
 
@@ -46,11 +46,54 @@ const DEFAULT_BRANDING = {
   heroTitle: 'Soluções Inteligentes para seu Negócio!',
   whatsappLink: '#',
   colors: {
-    primary: '#1c2733',      // fundo do painel direito / botão
-    primaryHover: '#2b3a4a',
-    accent: '#4CAF50',       // destaques (tag "nas Suas Mãos!", play button hover)
+    primary: '#1E3A5F',
+    primaryHover: '#1B3555',
+    accent: '#3B82A0',
   },
 };
+
+const HEX_COLOR_PATTERN = /^#[0-9a-f]{6}$/i;
+
+function normalizeColor(value, fallback) {
+  return typeof value === 'string' && HEX_COLOR_PATTERN.test(value)
+    ? value
+    : fallback;
+}
+
+function normalizeAssetUrl(value) {
+  if (typeof value !== 'string' || value.length > 2048) return null;
+
+  try {
+    const url = new URL(value, window.location.origin);
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
+    return url.href;
+  } catch {
+    return null;
+  }
+}
+
+function normalizeBranding(branding) {
+  const colors = branding?.colors || {};
+
+  return {
+    ...DEFAULT_BRANDING,
+    ...branding,
+    companyName: typeof branding?.companyName === 'string'
+      ? branding.companyName.slice(0, 120)
+      : DEFAULT_BRANDING.companyName,
+    logoUrl: normalizeAssetUrl(branding?.logoUrl),
+    faviconUrl: normalizeAssetUrl(branding?.faviconUrl),
+    heroTitle: typeof branding?.heroTitle === 'string'
+      ? branding.heroTitle.slice(0, 160)
+      : DEFAULT_BRANDING.heroTitle,
+    whatsappLink: normalizeAssetUrl(branding?.whatsappLink) || '#',
+    colors: {
+      primary: normalizeColor(colors.primary, DEFAULT_BRANDING.colors.primary),
+      primaryHover: normalizeColor(colors.primaryHover, DEFAULT_BRANDING.colors.primaryHover),
+      accent: normalizeColor(colors.accent, DEFAULT_BRANDING.colors.accent),
+    },
+  };
+}
 
 
 // 3. Função que efetivamente vai chamar a API (SUBSTITUIR quando pronta)
@@ -98,9 +141,9 @@ export async function getTenantBranding() {
 
   try {
     const branding = await fetchBrandingFromApi(tenantId);
-    return { ...DEFAULT_BRANDING, ...branding };
+    return normalizeBranding(branding);
   } catch (err) {
     console.error('Erro ao carregar branding do tenant, usando padrão.', err);
-    return DEFAULT_BRANDING;
+    return normalizeBranding(DEFAULT_BRANDING);
   }
 }

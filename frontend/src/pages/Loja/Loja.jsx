@@ -1,4 +1,5 @@
-import "./Produtos.css";
+import "./Loja.css";
+import { Link } from "react-router-dom";
 
 const products = [
     {
@@ -38,16 +39,9 @@ const products = [
     },
 ];
 
-function Produtos() {
+function Loja() {
     return (
         <section className="store-page" aria-labelledby="store-title">
-            <header className="store-header">
-                <h1 id="store-title">
-                    Loja
-                </h1>
-                <p>Escolha as soluções que sua empresa precisa.</p>
-            </header>
-
             <div className="store-grid">
                 {products.map((product) => (
                     <article className="store-card" key={product.id}>
@@ -68,9 +62,13 @@ function Produtos() {
                             </div>
                         </dl>
 
-                        <button className="store-card-button mt-2" type="button">
+                        <Link
+                            className="store-card-button mt-2"
+                            to="/produtos/novo"
+                            state={{ product }}
+                        >
                             Contratar
-                        </button>
+                        </Link>
                     </article>
                 ))}
             </div>
@@ -78,4 +76,4 @@ function Produtos() {
     );
 }
 
-export default Produtos;
+export default Loja;

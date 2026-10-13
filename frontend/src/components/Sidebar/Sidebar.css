@@ -149,6 +149,15 @@ a.sidebar-link, button.sidebar-link {
     z-index: 10;
 }
 
+.sidebar-section-label {
+    margin: .75rem 1.45rem .5rem;
+    color: rgba(255, 255, 255, .45);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
 .sidebar-link i,
 .dropdown-item i {
     font-size: 1.1rem;
@@ -171,6 +180,22 @@ a.sidebar-link.active i {
     color: var(--accent-color);
 }
 
+.sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    margin: auto .9rem .9rem;
+    padding: .7rem .75rem;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    color: rgba(255, 255, 255, .55);
+    font-size: .72rem;
+}
+
+.sidebar-footer i {
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
 #sidebar:not(.expand) a.sidebar-link,
 #sidebar:not(.expand) button.sidebar-link {
     margin: .2rem .7rem;
@@ -180,6 +205,17 @@ a.sidebar-link.active i {
 
 #sidebar:not(.expand) .sidebar-link i {
     margin: 0;
+}
+
+#sidebar:not(.expand) .sidebar-section-label,
+#sidebar:not(.expand) .sidebar-footer span {
+    display: none;
+}
+
+#sidebar:not(.expand) .sidebar-footer {
+    justify-content: center;
+    margin-inline: .7rem;
+    padding-inline: 0;
 }
 
 .sidebar-item {

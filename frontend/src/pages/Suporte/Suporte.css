@@ -1,0 +1,28 @@
+.support-page {
+    width: 100%;
+}
+
+.support-placeholder {
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: var(--surface-color);
+    box-shadow: 0 4px 12px rgba(31, 41, 55, .05);
+    color: var(--text-secondary-color);
+    text-align: center;
+}
+
+.support-placeholder i {
+    color: var(--secondary-color);
+    font-size: 2.5rem;
+}
+
+.support-placeholder strong {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
