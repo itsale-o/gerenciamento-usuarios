@@ -1,5 +1,4 @@
 import './Sidebar.css';
-import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
 const SIDEBAR_EXPANDED_KEY = 'sidebar-expanded';
@@ -57,28 +56,8 @@ function Sidebar({ branding }) {
                 </button>
             </div>
             
-            <ul className="sidebar-nav">
-                <li className="sidebar-item">
-                    <NavLink to="/dashboard" className="sidebar-link">
-                        <i className='bx bxs-dashboard'></i>
-                        <span>Painel</span>
-                    </NavLink>
-                </li>
-
-                <li className="sidebar-item">
-                    <NavLink to="/produtos" className="sidebar-link">
-                        <i className='bx bxs-store'></i>
-                        <span>Loja</span>
-                    </NavLink>
-                </li>
-
-                <li className="sidebar-item">
-                    <NavLink to="/suporte" className="sidebar-link">
-                        <i className='bx bxs-help-circle'></i>
-                        <span>Suporte</span>
-                    </NavLink>
-                </li>
-            </ul>
+            <nav className="sidebar-nav" aria-label="Menu da tela">
+            </nav>
         </aside>
     );
 }

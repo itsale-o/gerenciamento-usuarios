@@ -6,7 +6,7 @@ function Dashboard() {
     return (
         <>
             <div className="page-title">
-                <h1>Boas-vindas, Alessandra.</h1>
+                <h1>Boas-vindas, Usuário.</h1>
                 <p>Facilite sua rotina centralizando tudo no mesmo lugar.</p>
             </div>
 

@@ -1,5 +1,6 @@
 import './Header.css';
 import { useState, useEffect, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
     const [open, setOpen] = useState(false);
@@ -21,6 +22,21 @@ function Header() {
 
     return (
         <nav className="header">
+            <div className="primary-nav" aria-label="Navegação principal">
+                <NavLink to="/dashboard" className="primary-nav-link">
+                    <i className="bx bxs-dashboard" aria-hidden="true"></i>
+                    <span>Painel</span>
+                </NavLink>
+                <NavLink to="/produtos" className="primary-nav-link">
+                    <i className="bx bxs-store" aria-hidden="true"></i>
+                    <span>Loja</span>
+                </NavLink>
+                <NavLink to="/suporte" className="primary-nav-link">
+                    <i className="bx bxs-help-circle" aria-hidden="true"></i>
+                    <span>Suporte</span>
+                </NavLink>
+            </div>
+
             <div className="header-search">
                 <i className="bx bx-search" aria-hidden="true"></i>
                 <input
@@ -44,7 +60,7 @@ function Header() {
                         <div className="avatar">
                             AO
                         </div>
-                        <span className="header-user-name">Alessandra</span>
+                        <span className="header-user-name">Usuário</span>
                     </button>
                     {open && (
                         <ul className="dropdown-menu dropdown-menu-end show">
