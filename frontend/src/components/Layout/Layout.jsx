@@ -33,7 +33,7 @@ function Layout() {
         <div className="layout" style={themeVars}>
             <Sidebar branding={branding} />
             <div className="layout-main">
-                <Header />
+                <Header branding={branding} />
 
                 <main className="layout-content">
                     <PageHeader />

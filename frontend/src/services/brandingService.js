@@ -40,7 +40,8 @@ export function getTenantIdFromUrl() {
 // Combine esse shape com o backend antes de implementarem a rota de verdade.
 const DEFAULT_BRANDING = {
   tenantId: null,
-  companyName: 'Websoft',
+  companyName: 'BR SOFT TECNOLOGIA LTDA-ME',
+  cnpj: '12.345.678/0001-90',
   logoUrl: null,        // se null, o componente usa o SVG placeholder
   faviconUrl: null,
   heroTitle: 'Soluções Inteligentes para seu Negócio!',
@@ -81,6 +82,9 @@ function normalizeBranding(branding) {
     companyName: typeof branding?.companyName === 'string'
       ? branding.companyName.slice(0, 120)
       : DEFAULT_BRANDING.companyName,
+    cnpj: typeof branding?.cnpj === 'string'
+      ? branding.cnpj.slice(0, 24)
+      : DEFAULT_BRANDING.cnpj,
     logoUrl: normalizeAssetUrl(branding?.logoUrl),
     faviconUrl: normalizeAssetUrl(branding?.faviconUrl),
     heroTitle: typeof branding?.heroTitle === 'string'

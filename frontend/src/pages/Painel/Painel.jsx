@@ -11,7 +11,7 @@ function Painel() {
                     icon={<i className='bx bx-line-chart'></i>}
                     button1={{
                         label: "Listar",
-                        url:"/"
+                        url:"/gestor"
                     }}
                 />
 

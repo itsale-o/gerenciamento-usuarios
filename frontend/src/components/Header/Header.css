@@ -10,10 +10,45 @@
 }
 
 .primary-nav {
+    min-width: 0;
     display: flex;
     align-items: stretch;
     align-self: stretch;
     gap: .25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.primary-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.tabs-navigation {
+    min-width: 0;
+    max-width: 52%;
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    gap: .15rem;
+}
+
+.tabs-scroll-button {
+    width: 24px;
+    height: 30px;
+    flex: 0 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: .35rem;
+    background: transparent;
+    color: var(--text-secondary-color);
+    cursor: pointer;
+}
+
+.tabs-scroll-button:hover {
+    background: #f1f5f9;
+    color: var(--primary-color);
 }
 
 .primary-nav-link {
@@ -22,11 +57,28 @@
     align-items: center;
     gap: .45rem;
     padding: 0 .8rem;
+    flex: 0 0 auto;
+    border: 0;
+    background: transparent;
     color: var(--text-secondary-color);
+    cursor: pointer;
     font-size: .9rem;
     font-weight: 600;
     white-space: nowrap;
     transition: color .2s ease, background-color .2s ease;
+}
+
+.tab-close {
+    margin-left: .2rem;
+    padding: .15rem;
+    border-radius: 50%;
+    font-size: .95rem;
+    opacity: .65;
+}
+
+.tab-close:hover {
+    background: rgba(31, 41, 55, .1);
+    opacity: 1;
 }
 
 .primary-nav-link::after {
@@ -89,6 +141,63 @@
     cursor: pointer;
 }
 
+.current-company {
+    min-width: 0;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    margin-left: auto;
+}
+
+.current-company-logo {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: .65rem;
+    background: #f1f5f9;
+    color: var(--primary-color);
+}
+
+.current-company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.current-company-logo i {
+    font-size: 1.25rem;
+}
+
+.current-company-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.current-company-info span {
+    overflow: hidden;
+    color: var(--text-secondary-color);
+    font-size: .68rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.current-company-info strong {
+    overflow: hidden;
+    color: var(--text-color);
+    font-size: .82rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .header-status {
     display: flex;
     align-items: center;
@@ -141,8 +250,16 @@
         font-size: 0;
     }
 
+    .tabs-navigation {
+        max-width: 48%;
+    }
+
     .primary-nav-link i {
         font-size: 1.2rem;
+    }
+
+    .primary-nav-link .tab-close {
+        display: none;
     }
 
     .primary-nav-link::after {
@@ -162,11 +279,25 @@
         display: none;
     }
 
+    .current-company {
+        max-width: 180px;
+    }
+
     .header-status {
         margin-right: .5rem;
     }
 
     .header-user-name {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .current-company {
+        max-width: 38px;
+    }
+
+    .current-company-info {
         display: none;
     }
 }
