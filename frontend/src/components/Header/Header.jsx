@@ -80,20 +80,32 @@ function Header({ branding }) {
         });
     }
 
-    function scrollTabs(direction) {
-        tabsRef.current?.scrollBy({ left: direction * 180, behavior: 'smooth' });
+    function handleTabsWheel(event) {
+        if (event.deltaY === 0 || !tabsRef.current) return;
+
+        event.preventDefault();
+        tabsRef.current.scrollLeft += event.deltaY;
     }
 
-    const tabs = [...FIXED_TABS, ...dynamicTabs];
-
     return (
-        <nav className="header">
-            <div className="tabs-navigation">
-                <button type="button" className="tabs-scroll-button" onClick={() => scrollTabs(-1)} aria-label="Ver abas anteriores">
-                    <i className="bx bx-chevron-left" aria-hidden="true"></i>
-                </button>
-                <div className="primary-nav" ref={tabsRef} aria-label="Abas abertas">
-                    {tabs.map((tab) => (
+        <div className="header-shell">
+            <div className="tab-strip" aria-label="Abas abertas">
+                <div className="fixed-tabs">
+                {FIXED_TABS.map((tab) => (
+                    <button
+                        key={tab.path}
+                        type="button"
+                        className={`primary-nav-link ${location.pathname === tab.path ? 'active' : ''}`}
+                        onClick={() => navigate(tab.path)}
+                    >
+                        <i className={`bx ${tab.icon}`} aria-hidden="true"></i>
+                        <span>{tab.label}</span>
+                    </button>
+                ))}
+                </div>
+                <div className="tabs-navigation">
+                    <div className="primary-nav" ref={tabsRef} onWheel={handleTabsWheel}>
+                    {dynamicTabs.map((tab) => (
                         <button
                             key={tab.path}
                             type="button"
@@ -102,27 +114,24 @@ function Header({ branding }) {
                         >
                             <i className={`bx ${tab.icon}`} aria-hidden="true"></i>
                             <span>{tab.label}</span>
-                            {!FIXED_TABS.some((fixedTab) => fixedTab.path === tab.path) && (
-                                <i
-                                    className="bx bx-x tab-close"
-                                    role="button"
-                                    tabIndex="0"
-                                    aria-label={`Fechar aba ${tab.label}`}
-                                    onClick={(event) => closeTab(tab.path, event)}
-                                    onKeyDown={(event) => {
-                                        if (event.key === 'Enter' || event.key === ' ') closeTab(tab.path, event);
-                                    }}
-                                ></i>
-                            )}
+                            <i
+                                className="bx bx-x tab-close"
+                                role="button"
+                                tabIndex="0"
+                                aria-label={`Fechar aba ${tab.label}`}
+                                onClick={(event) => closeTab(tab.path, event)}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter' || event.key === ' ') closeTab(tab.path, event);
+                                }}
+                            ></i>
                         </button>
                     ))}
+                    </div>
                 </div>
-                <button type="button" className="tabs-scroll-button" onClick={() => scrollTabs(1)} aria-label="Ver próximas abas">
-                    <i className="bx bx-chevron-right" aria-hidden="true"></i>
-                </button>
             </div>
 
-            <div className="header-search">
+            <nav className="header">
+                <div className="header-search">
                 <i className="bx bx-search" aria-hidden="true"></i>
                 <input
                     type="search"
@@ -134,9 +143,9 @@ function Header({ branding }) {
                 {/* <button type="button" aria-label="Abrir busca">
                     <i className="bx bx-command" aria-hidden="true"></i>
                 </button> */}
-            </div>
+                </div>
 
-            <div className="current-company" title={branding?.companyName || 'Empresa atual'}>
+                <div className="current-company" title={branding?.companyName || 'Empresa atual'}>
                 <div className="current-company-logo">
                     {branding?.logoUrl ? (
                         <img src={branding.logoUrl} alt="" />
@@ -148,9 +157,9 @@ function Header({ branding }) {
                     <span>{branding?.cnpj || 'CNPJ não informado'}</span>
                     <strong>{branding?.companyName || 'Carregando...'}</strong>
                 </div>
-            </div>
+                </div>
 
-            <div className="header-menu">
+                <div className="header-menu">
                 <div className="dropdown" ref={dropdownRef}>
                     <button 
                         className="btn btn-menu dropdown-toggle"
@@ -171,8 +180,9 @@ function Header({ branding }) {
                     )}
                     
                 </div>
-            </div>
-        </nav>
+                </div>
+            </nav>
+        </div>
     );
 }
 
