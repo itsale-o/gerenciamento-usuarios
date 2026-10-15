@@ -12,16 +12,22 @@ function BrandMark({ branding }) {
     return (
         <div className="sidebar-brand">
             {branding?.logoUrl ? (
-                <img src={branding.logoUrl} alt="" className="sidebar-brand-image" />
+                <>
+                    <img
+                        src={branding.logoUrl}
+                        alt=""
+                        className="sidebar-brand-image"
+                        onError={(event) => {
+                            event.currentTarget.hidden = true;
+                            event.currentTarget.nextElementSibling.hidden = false;
+                        }}
+                    />
+                    <i className="bx bxs-business sidebar-brand-fallback" aria-hidden="true" hidden></i>
+                </>
             ) : (
-                <svg width="38" height="38" viewBox="0 0 56 56" fill="none" aria-hidden="true">
-                    <path d="M28 4 L40 16 L28 16 Z" fill="#2E7DD1" />
-                    <path d="M52 28 L40 40 L40 28 Z" fill="#F2A93B" />
-                    <path d="M28 52 L16 40 L28 40 Z" fill="var(--brand-accent, #3B82A0)" />
-                    <path d="M4 28 L16 16 L16 28 Z" fill="#E5473A" />
-                </svg>
+                <i className="bx bxs-business sidebar-brand-fallback" aria-hidden="true"></i>
             )}
-            <span>{branding.companyName}</span>
+            <span className="sidebar-brand-name" title={branding.companyName}>{branding.companyName}</span>
         </div>
     );
 }
@@ -50,7 +56,7 @@ function Sidebar({ branding }) {
 
     const menus = {
         dashboard: [
-            { label: 'Visão geral', icon: 'bx-grid-alt', to: '/dashboard', end: true },
+            { label: 'Vis\u00e3o geral', icon: 'bx-grid-alt', to: '/dashboard', end: true },
         ],
         store: [
             { label: 'Produtos', icon: 'bx-package', to: '/produtos', end: true },
@@ -59,7 +65,7 @@ function Sidebar({ branding }) {
         support: [
             { label: 'Atendimento', icon: 'bx-headphone', to: '/suporte', end: true },
             { label: 'Meus chamados', icon: 'bx-message-square-detail', to: '/suporte/chamados' },
-            { label: 'Base de soluções', icon: 'bx-book-open', to: '/suporte/solucoes' },
+            { label: 'Base de solu\u00e7\u00f5es', icon: 'bx-book-open', to: '/suporte/solucoes' },
         ],
         manager: [
             { label: 'Monitor', icon: 'bx-line-chart', to: '/gestor', end: true },

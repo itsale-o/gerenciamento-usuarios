@@ -65,6 +65,12 @@ button.sidebar-link {
     overflow: hidden;
 }
 
+.sidebar-brand-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .sidebar-brand-loading {
     width: 150px;
     height: 38px;
@@ -84,6 +90,23 @@ button.sidebar-link {
     height: 34px;
     object-fit: contain;
     flex: 0 0 38px;
+}
+
+.sidebar-brand-fallback {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .55rem;
+    background: rgba(255, 255, 255, .12);
+    color: var(--accent-color);
+    font-size: 1.35rem;
+}
+
+.sidebar-brand-fallback[hidden] {
+    display: none;
 }
 
 #sidebar:not(.expand) .sidebar-topbar {
