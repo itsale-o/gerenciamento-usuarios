@@ -1,43 +1,13 @@
 import './Sidebar.css';
+import BrandMark from '../BrandMark/BrandMark';
+
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const SIDEBAR_EXPANDED_KEY = 'sidebar-expanded';
-
-function BrandMark({ branding }) {
-    if (!branding) {
-        return <div className="sidebar-brand-loading" aria-hidden="true" />;
-    }
-
-    return (
-        <div className="sidebar-brand">
-            {branding?.logoUrl ? (
-                <img src={branding.logoUrl} alt="" className="sidebar-brand-image" />
-            ) : (
-                <svg width="38" height="38" viewBox="0 0 56 56" fill="none" aria-hidden="true">
-                    <path d="M28 4 L40 16 L28 16 Z" fill="#2E7DD1" />
-                    <path d="M52 28 L40 40 L40 28 Z" fill="#F2A93B" />
-                    <path d="M28 52 L16 40 L28 40 Z" fill="var(--brand-accent, #4CAF50)" />
-                    <path d="M4 28 L16 16 L16 28 Z" fill="#E5473A" />
-                </svg>
-            )}
-            <span>{branding.companyName}</span>
-        </div>
-    );
-}
 
 function Sidebar({ branding }) {
-    const [expanded, setExpanded] = useState(() => {
-        return localStorage.getItem(SIDEBAR_EXPANDED_KEY) === 'true';
-    });
-
-    function toggleSidebar() {
-        setExpanded((currentExpanded) => {
-            const nextExpanded = !currentExpanded;
-            localStorage.setItem(SIDEBAR_EXPANDED_KEY, String(nextExpanded));
-            return nextExpanded;
-        });
-    }
+    const [expanded, setExpanded] = useState(false);
+    const [collapseOpen, setCollapseOpen] = useState(false);
 
     return (
         <aside id="sidebar" className={expanded ? 'expand' : ''}>
@@ -45,10 +15,10 @@ function Sidebar({ branding }) {
                 <BrandMark branding={branding} />
 
                 <button 
-                    className="toggle-btn" 
+                    className="toggle-btn border-0" 
                     type='button'
                     aria-label={expanded ? 'Recolher menu' : 'Expandir menu'}
-                    onClick={toggleSidebar}
+                    onClick={() => setExpanded(!expanded)}
                 >
                     <i 
                         id="icon" 
@@ -73,19 +43,9 @@ function Sidebar({ branding }) {
                 </li>
 
                 <li className="sidebar-item">
-                    <Link to="/planos" className="sidebar-link">
+                    <Link to="/produtos" className="sidebar-link">
                         <i className='bx bxs-grid-alt'></i>
                         <span>Planos</span>
-                    <Link to="/produtos" className="sidebar-link">
-                        <i className='bx bxs-package'></i>
-                        <span>Planos</span>
-                    </Link>
-                </li>
-
-                <li className="sidebar-item">
-                    <Link to="/configuracoes" className="sidebar-link">
-                        <i className='bx bxs-cog'></i>
-                        <span>Suporte</span>
                     </Link>
                 </li>
 
@@ -102,6 +62,38 @@ function Sidebar({ branding }) {
                         <span>Conta</span>
                     </Link>
                 </li>
+
+
+                {/* <li className="sidebar-item">
+
+                    <button
+                        type="button"
+                        className={`sidebar-link has-dropdown ${collapseOpen ? '' : 'collapsed'}`}
+                        onClick={() => setCollapseOpen(prev => !prev)}
+                    >
+                        <i className="bx bxs-bug"></i>
+                        <span>Collapsed</span>
+                    </button>
+
+                    <ul
+                        className={`sidebar-dropdown list-unstyled collapse ${
+                            collapseOpen ? 'show' : ''
+                        }`}
+                    >
+                        <li className="sidebar-item">
+                            <a href="#" className="sidebar-link">
+                                Teste
+                            </a>
+                        </li>
+
+                        <li className="sidebar-item">
+                            <a href="#" className="sidebar-link">
+                                Teste 2
+                            </a>
+                        </li>
+                    </ul>
+
+                </li> */}
             </ul>
         </aside>
     );

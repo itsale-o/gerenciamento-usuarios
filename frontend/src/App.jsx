@@ -31,3 +31,36 @@ function App() {
 }
 
 export default App;
+
+// import { useEffect, useState } from "react";
+// import { getTenantByDomain } from "./services/tenantService";
+
+// function App() {
+//     const [tenant, setTenant] = useState(null);
+//     const [error, setError] = useState(null);
+
+//     useEffect(() => {
+//         getTenantByDomain()
+//             .then(setTenant)
+//             .catch((err) => setError(err.message));
+//     }, []);
+
+//     if (error) {
+//         return <div>{error}</div>;
+//     }
+
+//     if (!tenant) {
+//         return <div>Carregando...</div>;
+//     }
+
+//     return (
+//         <div>
+//             <h1>{tenant.name}</h1>
+//             <p>ID: {tenant.id}</p>
+//             <p>Domínio: {tenant.domain}</p>
+//             <p>Logo: {tenant.logo}</p>
+//         </div>
+//     );
+// }
+
+// export default App;

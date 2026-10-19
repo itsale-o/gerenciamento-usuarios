@@ -10,7 +10,7 @@ li {
     width: 248px;
     min-width: 248px;
     transition: all 0.25s ease-in-out;
-    background: linear-gradient(180deg, #162536 0%, #1e3349 100%);
+    background: var(--primary-color);
     display: flex;
     flex-direction: column;
 }
@@ -52,45 +52,15 @@ button.sidebar-link {
     gap: .75rem;
 }
 
-.sidebar-brand {
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    gap: .65rem;
-    color: #fff;
-    font-size: 1.15rem;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-}
 
-.sidebar-brand-loading {
-    width: 150px;
-    height: 38px;
-    border-radius: .45rem;
-    background: rgba(255, 255, 255, .12);
-    animation: sidebar-brand-pulse 1.2s ease-in-out infinite;
-}
 
-@keyframes sidebar-brand-pulse {
-    50% {
-        opacity: .45;
-    }
-}
-
-.sidebar-brand-image {
-    width: 38px;
-    height: 38px;
-    object-fit: contain;
-    flex: 0 0 38px;
-}
 
 #sidebar:not(.expand) .sidebar-topbar {
     padding: 1.25rem .9rem;
     flex-direction: column;
 }
 
-#sidebar:not(.expand) .sidebar-brand-loading {
+#sidebar:not(.expand) {
     width: 38px;
 }
 
@@ -119,15 +89,6 @@ button.sidebar-link {
 #sidebar.expand button.sidebar-link span,
 #sidebar.expand a.sidebar-link span {
     animation: fadeIn .25s ease;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
 }
 
 a.sidebar-link, button.sidebar-link {
@@ -259,7 +220,7 @@ button.sidebar-link:hover {
         display: inline;
     }
 
-    #sidebar:not(.expand) .sidebar-brand-loading {
+    #sidebar:not(.expand) {
         width: 150px;
     }
 
@@ -300,21 +261,26 @@ button.sidebar-link:hover {
 }
 
 @media (max-width: 420px) {
-    .sidebar-brand {
-        font-size: 1rem;
-    }
-
-    .sidebar-brand-image,
-    .sidebar-brand svg {
-        width: 32px;
-        height: 32px;
-    }
-
     #sidebar:not(.expand) a.sidebar-link,
     #sidebar:not(.expand) button.sidebar-link,
     #sidebar.expand a.sidebar-link,
     #sidebar.expand button.sidebar-link {
         padding: .6rem .55rem;
         font-size: .85rem;
+    }
+}
+
+@keyframes sidebar-brand-pulse {
+    50% {
+        opacity: .45;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

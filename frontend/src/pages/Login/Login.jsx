@@ -2,7 +2,7 @@ import './Login.css';
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getTenantBranding } from '../../services/brandingService';
+import { getTenantByDomain } from '../../services/tenantService';
 
 function Login() {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ function Login() {
     useEffect(() => {
         let isMounted = true;
 
-        getTenantBranding().then((data) => {
+        getTenantByDomain().then((data) => {
             if (isMounted) {
                 setBranding(data);
                 setLoadingBranding(false);
