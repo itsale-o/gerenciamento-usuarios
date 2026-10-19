@@ -10,7 +10,8 @@ function FormField({
     required=false,
     colSpan=12,
     options=[],
-    rows=4
+    rows=4,
+    disabled=false
 }) {
     return (
         <div 
@@ -28,6 +29,7 @@ function FormField({
                     value={value}
                     onChange={onChange}
                     required={required}
+                    disabled={disabled}
                     className="form-select"
                 >
                     <option value="">
@@ -51,6 +53,7 @@ function FormField({
                     onChange={onChange}
                     placeholder={placeholder}
                     required={required}
+                    disabled={disabled}
                     rows={rows}
                     className="form-control"
                 />
@@ -63,6 +66,7 @@ function FormField({
                     onChange={onChange}
                     placeholder={placeholder}
                     required={required}
+                    disabled={disabled}
                     className="form-control"
                 />
             )}

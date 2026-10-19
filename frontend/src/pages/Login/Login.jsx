@@ -144,12 +144,12 @@ function Login() {
                             <circle cx="90" cy="60" r="70" fill="#2b3a4a" opacity="0.6" />
                             <circle cx="330" cy="170" r="90" fill="#243040" opacity="0.6" />
                             <rect x="40" y="120" width="120" height="70" rx="10" fill="#33455a" />
-                            <circle cx="230" cy="80" r="34" fill="none" stroke="#4CAF50" strokeWidth="1.5" opacity="0.8" />
+                            <circle cx="230" cy="80" r="34" fill="none" stroke="var(--brand-accent)" strokeWidth="1.5" opacity="0.8" />
                             <circle cx="230" cy="80" r="20" fill="none" stroke="#2E7DD1" strokeWidth="1.5" opacity="0.8" />
-                            <line x1="230" y1="46" x2="230" y2="20" stroke="#4CAF50" strokeWidth="1.5" />
+                            <line x1="230" y1="46" x2="230" y2="20" stroke="var(--brand-accent)" strokeWidth="1.5" />
                             <line x1="264" y1="80" x2="290" y2="80" stroke="#2E7DD1" strokeWidth="1.5" />
                             <rect x="150" y="150" width="14" height="14" fill="#F2A93B" />
-                            <rect x="172" y="150" width="14" height="14" fill="#4CAF50" />
+                            <rect x="172" y="150" width="14" height="14" fill="var(--brand-accent)" />
                             <rect x="194" y="150" width="14" height="14" fill="#2E7DD1" />
                         </svg>
                         <button className="play-btn" aria-label="Reproduzir vídeo">

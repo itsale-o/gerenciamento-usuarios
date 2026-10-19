@@ -1,14 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from "./components/Layout/Layout";
-import Dashboard from './pages/Dashboard/Dashboard';
+import Painel from './pages/Painel/Painel';
 import Login from './pages/Login/Login';
-import Faturas from './pages/Faturas/Faturas';
-import Clientes from './pages/Clientes/Clientes';
-import Produtos from './pages/Produtos/Produtos';
-import Configuracao from './pages/Configuracao/Configuracao';
-import ClientesForm from './pages/Clientes/ClientesForm';
-import ProdutosForm from './pages/Produtos/ProdutosForm';
-import ERP from './pages/ERP/Erp';
+import Loja from './pages/Loja/Loja';
+import LojaForm from './pages/Loja/LojaForm';
+import Suporte from './pages/Suporte/Suporte';
+import Gestor from './pages/Gestor/Gestor';
 
 function App() {
     return (
@@ -16,14 +13,11 @@ function App() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route element={<Layout />}>
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/faturas" element={<Faturas />} />
-                    <Route path="/clientes" element={<Clientes />} />
-                    <Route path="/clientes/novo" element={<ClientesForm />} />
-                    <Route path="/produtos" element={<Produtos />} />
-                    <Route path="/produtos/novo" element={<ProdutosForm />} />
-                    <Route path="/configuracoes" element={<Configuracao />} />
-                    <Route path="/erp" element={<ERP />} />
+                    <Route path="/dashboard" element={<Painel />} />
+                    <Route path="/produtos" element={<Loja />} />
+                    <Route path="/produtos/novo" element={<LojaForm />} />
+                    <Route path="/suporte/*" element={<Suporte />} />
+                    <Route path="/gestor/*" element={<Gestor />} />
                 </Route>
             </Routes>
         </BrowserRouter>

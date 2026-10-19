@@ -1,10 +1,55 @@
 import './Header.css';
 import { useState, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-function Header() {
+const FIXED_TABS = [
+    { path: '/dashboard', label: 'Painel', icon: 'bxs-dashboard' },
+    { path: '/produtos', label: 'Loja', icon: 'bxs-store' },
+    { path: '/suporte', label: 'Suporte', icon: 'bxs-help-circle' },
+];
+
+const DYNAMIC_TABS = [
+    { path: '/gestor', label: 'Gestor', icon: 'bxs-briefcase' },
+    { path: '/gestor/pessoas', label: 'Pessoas', icon: 'bx-group' },
+    { path: '/gestor/sistemas', label: 'Sistemas', icon: 'bx-devices' },
+    { path: '/gestor/financeiro', label: 'Financeiro', icon: 'bx-wallet' },
+    { path: '/gestor/administrar', label: 'Administrar', icon: 'bx-cog' },
+];
+
+const ALL_TABS = [...FIXED_TABS, ...DYNAMIC_TABS];
+
+function getTab(pathname) {
+    return ALL_TABS.find((tab) => tab.path === pathname) || {
+        path: pathname,
+        label: 'Nova página',
+        icon: 'bx-file',
+    };
+}
+
+function Header({ branding }) {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
+    const [dynamicTabs, setDynamicTabs] = useState([]);
     const dropdownRef = useRef(null);
+    const tabsRef = useRef(null);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const currentTab = getTab(location.pathname);
+
+        if (!FIXED_TABS.some((tab) => tab.path === currentTab.path)) {
+            const timeoutId = setTimeout(() => {
+                setDynamicTabs((currentTabs) => currentTabs.some((tab) => tab.path === currentTab.path)
+                    ? currentTabs
+                    : [...currentTabs, currentTab]);
+            }, 0);
+
+            return () => clearTimeout(timeoutId);
+        }
+
+        return undefined;
+    }, [location.pathname]);
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -19,9 +64,74 @@ function Header() {
         };
     }, []);
 
+    function closeTab(path, event) {
+        event.stopPropagation();
+
+        setDynamicTabs((currentTabs) => {
+            const tabIndex = currentTabs.findIndex((tab) => tab.path === path);
+            const nextTabs = currentTabs.filter((tab) => tab.path !== path);
+
+            if (location.pathname === path) {
+                const fallbackTab = currentTabs[tabIndex - 1] || currentTabs[tabIndex + 1] || FIXED_TABS[0];
+                navigate(fallbackTab.path);
+            }
+
+            return nextTabs;
+        });
+    }
+
+    function handleTabsWheel(event) {
+        if (event.deltaY === 0 || !tabsRef.current) return;
+
+        event.preventDefault();
+        tabsRef.current.scrollLeft += event.deltaY;
+    }
+
     return (
-        <nav className="header">
-            <div className="header-search">
+        <div className="header-shell">
+            <div className="tab-strip" aria-label="Abas abertas">
+                <div className="fixed-tabs">
+                {FIXED_TABS.map((tab) => (
+                    <button
+                        key={tab.path}
+                        type="button"
+                        className={`primary-nav-link ${location.pathname === tab.path ? 'active' : ''}`}
+                        onClick={() => navigate(tab.path)}
+                    >
+                        <i className={`bx ${tab.icon}`} aria-hidden="true"></i>
+                        <span>{tab.label}</span>
+                    </button>
+                ))}
+                </div>
+                <div className="tabs-navigation">
+                    <div className="primary-nav" ref={tabsRef} onWheel={handleTabsWheel}>
+                    {dynamicTabs.map((tab) => (
+                        <button
+                            key={tab.path}
+                            type="button"
+                            className={`primary-nav-link ${location.pathname === tab.path ? 'active' : ''}`}
+                            onClick={() => navigate(tab.path)}
+                        >
+                            <i className={`bx ${tab.icon}`} aria-hidden="true"></i>
+                            <span>{tab.label}</span>
+                            <i
+                                className="bx bx-x tab-close"
+                                role="button"
+                                tabIndex="0"
+                                aria-label={`Fechar aba ${tab.label}`}
+                                onClick={(event) => closeTab(tab.path, event)}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter' || event.key === ' ') closeTab(tab.path, event);
+                                }}
+                            ></i>
+                        </button>
+                    ))}
+                    </div>
+                </div>
+            </div>
+
+            <nav className="header">
+                <div className="header-search">
                 <i className="bx bx-search" aria-hidden="true"></i>
                 <input
                     type="search"
@@ -33,8 +143,23 @@ function Header() {
                 {/* <button type="button" aria-label="Abrir busca">
                     <i className="bx bx-command" aria-hidden="true"></i>
                 </button> */}
-            </div>
-            <div className="header-menu">
+                </div>
+
+                <div className="current-company" title={branding?.companyName || 'Empresa atual'}>
+                <div className="current-company-logo">
+                    {branding?.logoUrl ? (
+                        <img src={branding.logoUrl} alt="" />
+                    ) : (
+                        <i className="bx bxs-business" aria-hidden="true"></i>
+                    )}
+                </div>
+                <div className="current-company-info">
+                    <span>{branding?.cnpj || 'CNPJ não informado'}</span>
+                    <strong>{branding?.companyName || 'Carregando...'}</strong>
+                </div>
+                </div>
+
+                <div className="header-menu">
                 <div className="dropdown" ref={dropdownRef}>
                     <button 
                         className="btn btn-menu dropdown-toggle"
@@ -44,7 +169,7 @@ function Header() {
                         <div className="avatar">
                             AO
                         </div>
-                        <span className="header-user-name">Alessandra</span>
+                        <span className="header-user-name">Usuário</span>
                     </button>
                     {open && (
                         <ul className="dropdown-menu dropdown-menu-end show">
@@ -55,8 +180,9 @@ function Header() {
                     )}
                     
                 </div>
-            </div>
-        </nav>
+                </div>
+            </nav>
+        </div>
     );
 }
 

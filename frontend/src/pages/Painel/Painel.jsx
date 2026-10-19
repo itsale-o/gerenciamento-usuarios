@@ -1,27 +1,22 @@
-import './Dashboard.css';
+import './Painel.css';
 
 import Card from '../../components/Card/Card';
 
-function Dashboard() {
+function Painel() {
     return (
         <>
-            <div className="page-title">
-                <h1>Boas-vindas, Alessandra.</h1>
-                <p>Facilite sua rotina centralizando tudo no mesmo lugar.</p>
-            </div>
-
             <div className="cards">
                 <Card
                     title="Geral"
                     icon={<i className='bx bx-line-chart'></i>}
                     button1={{
                         label: "Listar",
-                        url:"/"
+                        url:"/gestor"
                     }}
                 />
 
                 <Card
-                    title="ERP"
+                    title="Sistemas"
                     icon={<i class='bx bx-notepad'></i>}
                     button1={{
                         label: "Listar",
@@ -95,7 +90,7 @@ function Dashboard() {
                 />
 
                 <Card
-                    title="Suporte"
+                    title="Atendimento"
                     icon={<i class='bx bx-headphone' ></i>}
                     button1={{
                         label: "Gerenciar",
@@ -180,4 +175,4 @@ function Dashboard() {
 }
 
 
-export default Dashboard;
+export default Painel;
