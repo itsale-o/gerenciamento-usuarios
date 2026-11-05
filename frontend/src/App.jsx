@@ -8,6 +8,7 @@ import Configuracao from './pages/Configuracao/Configuracao';
 import ClientesForm from './pages/Clientes/ClientesForm';
 import ProdutosForm from './pages/Produtos/ProdutosForm';
 import Suporte from './pages/Suporte/Suporte';
+import TesteIdioma from './components/TesteIdioma';
 
 function App() {
     return (

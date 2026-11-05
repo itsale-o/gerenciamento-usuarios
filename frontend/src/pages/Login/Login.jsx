@@ -3,29 +3,63 @@ import './Login.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTenantBranding } from '../../services/brandingService';
+import { useTranslation } from 'react-i18next';
+import { getAvailableLanguages } from '../../services/languageService';
 
 function Login() {
     const navigate = useNavigate();
     const [branding, setBranding] = useState(null);
     const [loadingBranding, setLoadingBranding] = useState(true);
+    const { t, i18n } = useTranslation("login");
+    const [languages, setLanguages] = useState([]);
 
     useEffect(() => {
-        let isMounted = true;
+    let isMounted = true;
 
-        getTenantBranding().then((data) => {
+    // Busca as informações visuais da empresa
+    getTenantBranding()
+        .then((data) => {
             if (isMounted) {
                 setBranding(data);
+            }
+        })
+        .catch((error) => {
+            console.error("Erro ao carregar branding:", error);
+        })
+        .finally(() => {
+            if (isMounted) {
                 setLoadingBranding(false);
             }
         });
 
-        return () => {
-            isMounted = false;
-        };
-    }, []);
+    // Identifica o idioma salvo no navegador
+    const currentLanguage = localStorage.getItem("language") || "BR";
+    const apiLanguage = currentLanguage.split("-")[0] === "pt" ? "BR" : currentLanguage.split("-")[0].toUpperCase();
+
+    // Busca os idiomas disponíveis na API
+    getAvailableLanguages(apiLanguage)
+        .then((data) => {
+            if (isMounted) {
+                setLanguages(data.lang || []);
+            }
+        })
+        .catch((error) => {
+            console.error("Erro ao carregar idiomas:", error);
+        });
+
+    return () => {
+        isMounted = false;
+    };
+}, []);
 
     function handleLogin() {
         navigate('/dashboard');
+    }
+
+    function handleLanguageChange(event) {
+        const language = event.target.value;
+        i18n.changeLanguage(language);
+        localStorage.setItem("language", language);
     }
 
     // Enquanto não sabemos o tenant, exibe um esqueleto simples
@@ -56,6 +90,19 @@ function Login() {
         <div className="login-container" style={themeVars}>
             {/* ===================== PAINEL ESQUERDO ===================== */}
             <div className="left-panel">
+                <select
+                    value={i18n.resolvedLanguage || i18n.language}
+                    onChange={handleLanguageChange}
+                >
+                    {languages.map((language) => (
+                        <option
+                            key={language.language}
+                            value={language.language}
+                        >
+                            {language.description}
+                        </option>
+                    ))}
+                </select>
                 <div className="logo">
                     {branding.logoUrl ? (
                         // Logo real do tenant, vinda da API
@@ -79,7 +126,12 @@ function Login() {
                                 <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
                             </svg>
                         </span>
-                        <input type="text" placeholder="Usuário" required className="form-control" />
+                        <input 
+                            type="text" 
+                            placeholder={t("user")} 
+                            required 
+                            className="form-control" 
+                        />
                     </div>
 
                     <div className="form-field">
@@ -89,7 +141,8 @@ function Login() {
                                 <path d="M8 11V7a4 4 0 0 1 8 0v4" />
                             </svg>
                         </span>
-                        <input type="password" placeholder="Senha" required className="form-control" />
+                        <input 
+                            type="password" placeholder={t("password")} required className="form-control" />
                     </div>
 
                     <label className="captcha-placeholder">

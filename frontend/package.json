@@ -13,8 +13,12 @@
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
     "boxicons": "^2.1.4",
+    "i18next": "^26.7.1",
+    "i18next-http-backend": "^4.0.9",
+    "jose": "^6.2.15",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-i18next": "^17.1.11",
     "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
