@@ -42,8 +42,6 @@ function decodeJWT(token) {
 
 export async function getAvailableLanguages(language = 'BR') {
     const token = await generateToken();
-    console.log('JWT gerado pelo React:', token);
-
     const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -57,16 +55,11 @@ export async function getAvailableLanguages(language = 'BR') {
 
     const responseBody = await response.text();
 
-    console.log('Status:', response.status);
-    console.log('Resposta da API:', responseBody);
-
     if (!response.ok) {
         throw new Error(
             `Erro ao buscar idiomas: HTTP ${response.status} - ${responseBody}`
         );
     }
-
     const data = decodeJWT(responseBody);
-
     return data;
 }

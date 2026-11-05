@@ -5,7 +5,7 @@ import HttpBackend from "i18next-http-backend";
 i18n.use(HttpBackend).use(initReactI18next).init({
     lng: localStorage.getItem("language") || "BR",
     fallbackLng: "BR",
-    supportedLngs: ["BR", "EN"],
+    supportedLngs: ["BR", "EN", "ES"],
     ns: ["common", "login", "dashboard"],
     defaultNS: "common",
     backend: {

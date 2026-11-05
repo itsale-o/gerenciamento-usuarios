@@ -1,6 +1,9 @@
 {
     "user": "Usuário",
+    "input_user_title": "Preencha este campo",
     "password": "Senha",
     "forgot_password": "Esqueceu a senha?",
-    "submit": "Entrar"
+    "sign_in": "Entrar",
+    "hero_title": "A plataforma do seu negócio local!",
+    "contact_us": "Entrar em contato"
 }

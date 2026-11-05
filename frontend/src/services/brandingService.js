@@ -1,22 +1,4 @@
-/**
- * brandingService.js
- *
- * Camada única responsável por resolver os dados de branding (white-label)
- * de um tenant a partir da URL. Hoje retorna dados mockados; quando a API
- * do backend estiver pronta, troque APENAS a função `fetchBrandingFromApi`
- * abaixo — o resto do app (Login.jsx, contexto, etc.) não precisa mudar.
- */
-
-// 1. Como descobrir o tenant a partir da URL
-
-// Ajuste esta função conforme a estratégia definida com o time de infra.
-// As duas mais comuns em white-label:
-//
-//   a) Subdomínio:  cliente1.seusistema.com.br  -> tenant = "cliente1"
-//   b) Query param: app.seusistema.com.br?tenant=cliente1
-//
-// Deixei as duas prontas; a querystring tem prioridade (útil pra testar
-// localmente sem mexer no DNS/hosts).
+import i18n from "../i18n";
 
 export function getTenantIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -43,7 +25,7 @@ const DEFAULT_BRANDING = {
   companyName: 'Websoft',
   logoUrl: null,        // se null, o componente usa o SVG placeholder
   faviconUrl: null,
-  heroTitle: 'Soluções Inteligentes para seu Negócio!',
+  heroTitle: null,
   whatsappLink: '#',
   colors: {
     primary: '#1c2733',      // fundo do painel direito / botão
@@ -74,7 +56,6 @@ async function fetchBrandingFromApi(tenantId) {
       tenantId,
       companyName: 'Cliente Local',
       logoUrl: '/favicon.svg',
-      heroTitle: 'A plataforma do seu negócio local!',
     };
   }
 
@@ -85,7 +66,6 @@ async function fetchBrandingFromApi(tenantId) {
       ...DEFAULT_BRANDING,
       tenantId,
       companyName: 'Cliente 1 Tech',
-      heroTitle: 'A plataforma completa para o seu negócio!',
     };
   }
 
@@ -98,9 +78,16 @@ export async function getTenantBranding() {
 
   try {
     const branding = await fetchBrandingFromApi(tenantId);
-    return { ...DEFAULT_BRANDING, ...branding };
+    return {
+      ...DEFAULT_BRANDING, 
+      ...branding,
+      heroTitle: branding.heroTitle || i18n.t("hero_title", {ns: "login"})
+    };
   } catch (err) {
     console.error('Erro ao carregar branding do tenant, usando padrão.', err);
-    return DEFAULT_BRANDING;
+    return {
+      ...DEFAULT_BRANDING,
+      heroTitle:i18n.t("hero_title", {ns: "login"})
+    };
   }
 }

@@ -1,6 +1,9 @@
 {
     "user": "User",
+    "input_user_title": "Fill in this field",
     "password": "Password",
     "forgot_password": "Forgot Password?",
-    "submit": "Sign in"
+    "sign_in": "Sign in",
+    "hero_title": "The plataform for your local business!",
+    "contact_us": "Contact us"
 }

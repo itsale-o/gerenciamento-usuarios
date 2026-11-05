@@ -1,10 +1,12 @@
 import './Header.css';
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function Header() {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
     const dropdownRef = useRef(null);
+    const { t } = useTranslation("header");
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -27,7 +29,7 @@ function Header() {
                     type="search"
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
-                    placeholder="O que você precisa..."
+                    placeholder={t("input_placeholder")}
                     aria-label="Buscar"
                 />
                 {/* <button type="button" aria-label="Abrir busca">
@@ -50,7 +52,7 @@ function Header() {
                         <ul className="dropdown-menu dropdown-menu-end show">
                             <li><span className="dropdown-item">IP: {window.location.host}</span>
                                 <span className="status-dot" aria-hidden="true"></span></li>
-                            <li><a className="dropdown-item" href="#">Sair</a></li>
+                            <li><a className="dropdown-item" href="#">{t("logout")}</a></li>
                         </ul>
                     )}
                     

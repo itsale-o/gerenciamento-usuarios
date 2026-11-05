@@ -1,108 +1,110 @@
 import './Dashboard.css';
-
 import Card from '../../components/Card/Card';
+import { useTranslation } from 'react-i18next';
 
 function Dashboard() {
+    const { t } = useTranslation("dashboard");
+
     return (
         <>
             <div className="page-title">
-                <h1>Boas-vindas, Alessandra.</h1>
-                <p>Facilite sua rotina centralizando tudo no mesmo lugar.</p>
+                <h1>{t("welcome")}, Alessandra.</h1>
+                <p>{t("subtitle")}</p>
             </div>
 
             <div className="cards">
                 <Card
-                    title="Geral"
+                    title={t("general")}
                     icon={<i className='bx bx-line-chart'></i>}
                     button1={{
-                        label: "Listar",
+                        label: t("list"),
                         url:"/"
                     }}
                 />
 
                 <Card
-                    title="Sistemas"
+                    title={t("systems")}
                     icon={<i class='bx bx-notepad'></i>}
                     button1={{
-                        label: "Listar",
+                        label: t("list"),
                         url:"/"
                     }}
                 />
 
                 <Card
-                    title="Revenda"
+                    title={t("reseller")}
                     icon={<i class='bx bx-dollar'></i>}
                     button1={{
-                        label: "Gerenciar",
+                        label: t("manage"),
                         url:"/"
                     }}
                     button2={{
-                        label: "Listar",
+                        label: t("list"),
                         url:"/"
                     }}
                 />
 
                 <Card
-                    title="Parceiro"
+                    title={t("partner")}
                     icon={<i class='bx bx-user'></i>}
                     button1={{
-                        label: "Gerenciar",
+                        label: t("manage"),
                         url:"/"
                     }}
                     button2={{
-                        label: "Listar",
+                        label: t("list"),
                         url:"/"
                     }}
                 />
 
                 <Card
-                    title="Integrador"
+                    title={t("integrator")}
                     icon={<i class='bx bx-link' ></i>}
                     button1={{
-                        label: "Gerenciar",
+                        label: t("manage"),
                         url:"/"
                     }}
                     button2={{
-                        label: "Listar",
+                        label: t("list"),
                         url:"/"
                     }}
                 />
 
                 <Card
-                    title="Contador"
+                    title={t("accountant")}
                     icon={<i class='bx bx-coin' ></i>}
                     button1={{
-                        label: "Gerenciar",
+                        label: t("manage"),
                         url:"/"
                     }}
                     button2={{
-                        label: "Listar",
+                        label: t("list"),
                         url:"/"
                     }}
                 />
 
                 <Card
-                    title="Consultor"
+                    title={t("consultant")}
                     icon={<i class='bx bx-message-rounded'></i>}
                     button1={{
-                        label: "Gerenciar",
+                        label: t("manage"),
                         url:"/"
                     }}
                     button2={{
-                        label: "Listar",
+                        label: t("list"),
                         url:"/"
                     }}
                 />
 
                 <Card
-                    title="Atendimento"
+                    title={t("support")}
                     icon={<i class='bx bx-headphone' ></i>}
                     button1={{
-                        label: "Gerenciar",
+                        label: t("manage"),
                         url:"/"
                     }}
                     button2={{
-                        label: "Listar",
+                        label: t("list"),
                         url:"/"
                     }}
                 />

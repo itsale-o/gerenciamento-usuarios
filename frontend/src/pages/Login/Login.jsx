@@ -1,5 +1,4 @@
 import './Login.css';
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTenantBranding } from '../../services/brandingService';
@@ -13,44 +12,45 @@ function Login() {
     const { t, i18n } = useTranslation("login");
     const [languages, setLanguages] = useState([]);
 
+    // 1. Carrega o brading
     useEffect(() => {
-    let isMounted = true;
+        let isMounted = true;
 
-    // Busca as informações visuais da empresa
-    getTenantBranding()
+        getTenantBranding()
         .then((data) => {
-            if (isMounted) {
-                setBranding(data);
-            }
+            if (isMounted) setBranding(data);
         })
         .catch((error) => {
-            console.error("Erro ao carregar branding:", error);
+            console.error("Erro ao carregar brading:", error);
         })
         .finally(() => {
-            if (isMounted) {
-                setLoadingBranding(false);
-            }
+            if (isMounted) setLoadingBranding(false);
         });
+        
+        return () => {
+            isMounted = false;
+        };
+    }, [i18n.language]);
 
-    // Identifica o idioma salvo no navegador
-    const currentLanguage = localStorage.getItem("language") || "BR";
-    const apiLanguage = currentLanguage.split("-")[0] === "pt" ? "BR" : currentLanguage.split("-")[0].toUpperCase();
-
-    // Busca os idiomas disponíveis na API
-    getAvailableLanguages(apiLanguage)
+    // 2. Carrega os idiomas disponíveis
+    useEffect(() => {
+        let isMounted = true;
+        const currentLanguage = localStorage.getItem("language") || "BR";
+        const apiLanguage = currentLanguage.split("-")[0] === "pt"
+            ? "BR" : currentLanguage.split("-")[0].toUpperCase();
+        
+        getAvailableLanguages(apiLanguage)
         .then((data) => {
-            if (isMounted) {
-                setLanguages(data.lang || []);
-            }
+            if (isMounted) setLanguages(data.lang || []);
         })
         .catch((error) => {
-            console.error("Erro ao carregar idiomas:", error);
+            console.error("Erro ao cattegar idiomas:", error);
         });
 
-    return () => {
-        isMounted = false;
-    };
-}, []);
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     function handleLogin() {
         navigate('/dashboard');
@@ -62,8 +62,6 @@ function Login() {
         localStorage.setItem("language", language);
     }
 
-    // Enquanto não sabemos o tenant, exibe um esqueleto simples
-    // (evita "piscar" a marca errada antes do branding certo chegar).
     if (loadingBranding) {
         return (
             <div className="login-container login-loading">
@@ -78,8 +76,6 @@ function Login() {
         );
     }
 
-    // Variáveis CSS dinâmicas: aplicadas só neste componente via inline style,
-    // então cada tenant pode ter sua própria paleta sem precisar de build separado.
     const themeVars = {
         '--brand-primary': branding.colors.primary,
         '--brand-primary-hover': branding.colors.primaryHover,
@@ -90,19 +86,6 @@ function Login() {
         <div className="login-container" style={themeVars}>
             {/* ===================== PAINEL ESQUERDO ===================== */}
             <div className="left-panel">
-                <select
-                    value={i18n.resolvedLanguage || i18n.language}
-                    onChange={handleLanguageChange}
-                >
-                    {languages.map((language) => (
-                        <option
-                            key={language.language}
-                            value={language.language}
-                        >
-                            {language.description}
-                        </option>
-                    ))}
-                </select>
                 <div className="logo">
                     {branding.logoUrl ? (
                         // Logo real do tenant, vinda da API
@@ -119,30 +102,44 @@ function Login() {
                 </div>
 
                 <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+                    <select
+                        value={i18n.resolvedLanguage || i18n.language}
+                        onChange={handleLanguageChange}
+                        className="form-control form-select"
+                    >
+                        {languages.map((language) => (
+                            <option
+                                key={language.language}
+                                value={language.language}
+                            >
+                                {language.description}
+                            </option>
+                        ))}
+                    </select>
+
                     <div className="form-field">
                         <span className="field-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
-                            </svg>
+                            <i className="bi bi-person" />
                         </span>
                         <input 
                             type="text" 
                             placeholder={t("user")} 
                             required 
                             className="form-control" 
+                            title={t("input_user_title")}
                         />
                     </div>
 
                     <div className="form-field">
                         <span className="field-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <rect x="5" y="11" width="14" height="9" rx="2" />
-                                <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-                            </svg>
+                            <i className="bi bi-lock" />
                         </span>
                         <input 
-                            type="password" placeholder={t("password")} required className="form-control" />
+                            type="password" 
+                            placeholder={t("password")} 
+                            required 
+                            className="form-control" 
+                        />
                     </div>
 
                     <label className="captcha-placeholder">
@@ -161,9 +158,9 @@ function Login() {
                             className="btn btn-login"
                             onClick={handleLogin}
                         >
-                            Entrar
+                            {t("sign_in")}
                         </button>
-                        <a href="#" className="link-senha">Esqueceu a senha?</a>
+                        <a href="#" className="link-senha">{t("forgot_password")}</a>
                     </div>
                 </form>
 
@@ -212,7 +209,7 @@ function Login() {
 
                     <a href={branding.whatsappLink} className="btn-whatsapp">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.4L2 22l4.7-1.6a11 11 0 0 0 13.8-16.9zM12 20a9 9 0 0 1-4.6-1.3l-.3-.2-3 1 1-2.9-.2-.3A9 9 0 1 1 12 20zm4.9-6.6c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4-.1-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3s1 2.7 1.1 2.9c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z" /></svg>
-                        Entrar em contato
+                        {t("contact_us")}
                     </a>
                 </div>
 
