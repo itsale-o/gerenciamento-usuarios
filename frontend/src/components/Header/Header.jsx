@@ -1,55 +1,13 @@
 import './Header.css';
 import { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const FIXED_TABS = [
-    { path: '/dashboard', label: 'Painel', icon: 'bxs-dashboard' },
-    { path: '/produtos', label: 'Loja', icon: 'bxs-store' },
-    { path: '/suporte', label: 'Suporte', icon: 'bxs-help-circle' },
-];
-
-const DYNAMIC_TABS = [
-    { path: '/gestor', label: 'Gestor', icon: 'bxs-briefcase' },
-    { path: '/gestor/pessoas', label: 'Pessoas', icon: 'bx-group' },
-    { path: '/gestor/sistemas', label: 'Sistemas', icon: 'bx-devices' },
-    { path: '/gestor/financeiro', label: 'Financeiro', icon: 'bx-wallet' },
-    { path: '/gestor/administrar', label: 'Administrar', icon: 'bx-cog' },
-];
-
-const ALL_TABS = [...FIXED_TABS, ...DYNAMIC_TABS];
-
-function getTab(pathname) {
-    return ALL_TABS.find((tab) => tab.path === pathname) || {
-        path: pathname,
-        label: 'Nova página',
-        icon: 'bx-file',
-    };
-}
-
-function Header({ branding }) {
+function Header() {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [dynamicTabs, setDynamicTabs] = useState([]);
     const dropdownRef = useRef(null);
-    const tabsRef = useRef(null);
-    const location = useLocation();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const currentTab = getTab(location.pathname);
-
-        if (!FIXED_TABS.some((tab) => tab.path === currentTab.path)) {
-            const timeoutId = setTimeout(() => {
-                setDynamicTabs((currentTabs) => currentTabs.some((tab) => tab.path === currentTab.path)
-                    ? currentTabs
-                    : [...currentTabs, currentTab]);
-            }, 0);
-
-            return () => clearTimeout(timeoutId);
-        }
-
-        return undefined;
-    }, [location.pathname]);
+    const { t } = useTranslation("header");
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -137,7 +95,7 @@ function Header({ branding }) {
                     type="search"
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
-                    placeholder="O que você precisa..."
+                    placeholder={t("input_placeholder")}
                     aria-label="Buscar"
                 />
                 {/* <button type="button" aria-label="Abrir busca">
@@ -175,7 +133,7 @@ function Header({ branding }) {
                         <ul className="dropdown-menu dropdown-menu-end show">
                             <li><span className="dropdown-item">IP: {window.location.host}</span>
                                 <span className="status-dot" aria-hidden="true"></span></li>
-                            <li><a className="dropdown-item" href="#">Sair</a></li>
+                            <li><a className="dropdown-item" href="#">{t("logout")}</a></li>
                         </ul>
                     )}
                     

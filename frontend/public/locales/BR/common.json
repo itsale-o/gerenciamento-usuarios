@@ -1,8 +1,8 @@
 {
-    "save": "Save",
-    "cancel": "Cancel",
-    "back": "Back",
-    "delete": "Delete",
-    "edit": "Edit",
-    "loading": "Loading..."
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "back": "Voltar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "loading": "Carregando..."
 }
