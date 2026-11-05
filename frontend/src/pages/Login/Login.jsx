@@ -1,22 +1,50 @@
 import './Login.css';
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getTenantByDomain } from '../../services/tenantService';
+import { getTenantBranding } from '../../services/brandingService';
+import { useTranslation } from 'react-i18next';
+import { getAvailableLanguages } from '../../services/languageService';
 
 function Login() {
     const navigate = useNavigate();
     const [branding, setBranding] = useState(null);
     const [loadingBranding, setLoadingBranding] = useState(true);
+    const { t, i18n } = useTranslation("login");
+    const [languages, setLanguages] = useState([]);
 
+    // 1. Carrega o brading
     useEffect(() => {
         let isMounted = true;
 
-        getTenantByDomain().then((data) => {
-            if (isMounted) {
-                setBranding(data);
-                setLoadingBranding(false);
-            }
+        getTenantBranding()
+        .then((data) => {
+            if (isMounted) setBranding(data);
+        })
+        .catch((error) => {
+            console.error("Erro ao carregar brading:", error);
+        })
+        .finally(() => {
+            if (isMounted) setLoadingBranding(false);
+        });
+        
+        return () => {
+            isMounted = false;
+        };
+    }, [i18n.language]);
+
+    // 2. Carrega os idiomas disponíveis
+    useEffect(() => {
+        let isMounted = true;
+        const currentLanguage = localStorage.getItem("language") || "BR";
+        const apiLanguage = currentLanguage.split("-")[0] === "pt"
+            ? "BR" : currentLanguage.split("-")[0].toUpperCase();
+        
+        getAvailableLanguages(apiLanguage)
+        .then((data) => {
+            if (isMounted) setLanguages(data.lang || []);
+        })
+        .catch((error) => {
+            console.error("Erro ao cattegar idiomas:", error);
         });
 
         return () => {
@@ -28,8 +56,12 @@ function Login() {
         navigate('/dashboard');
     }
 
-    // Enquanto não sabemos o tenant, exibe um esqueleto simples
-    // (evita "piscar" a marca errada antes do branding certo chegar).
+    function handleLanguageChange(event) {
+        const language = event.target.value;
+        i18n.changeLanguage(language);
+        localStorage.setItem("language", language);
+    }
+
     if (loadingBranding) {
         return (
             <div className="login-container login-loading">
@@ -44,8 +76,6 @@ function Login() {
         );
     }
 
-    // Variáveis CSS dinâmicas: aplicadas só neste componente via inline style,
-    // então cada tenant pode ter sua própria paleta sem precisar de build separado.
     const themeVars = {
         '--brand-primary': branding.colors.primary,
         '--brand-primary-hover': branding.colors.primaryHover,
@@ -72,24 +102,44 @@ function Login() {
                 </div>
 
                 <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+                    <select
+                        value={i18n.resolvedLanguage || i18n.language}
+                        onChange={handleLanguageChange}
+                        className="form-control form-select"
+                    >
+                        {languages.map((language) => (
+                            <option
+                                key={language.language}
+                                value={language.language}
+                            >
+                                {language.description}
+                            </option>
+                        ))}
+                    </select>
+
                     <div className="form-field">
                         <span className="field-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
-                            </svg>
+                            <i className="bi bi-person" />
                         </span>
-                        <input type="text" placeholder="Usuário" required className="form-control" />
+                        <input 
+                            type="text" 
+                            placeholder={t("user")} 
+                            required 
+                            className="form-control" 
+                            title={t("input_user_title")}
+                        />
                     </div>
 
                     <div className="form-field">
                         <span className="field-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <rect x="5" y="11" width="14" height="9" rx="2" />
-                                <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-                            </svg>
+                            <i className="bi bi-lock" />
                         </span>
-                        <input type="password" placeholder="Senha" required className="form-control" />
+                        <input 
+                            type="password" 
+                            placeholder={t("password")} 
+                            required 
+                            className="form-control" 
+                        />
                     </div>
 
                     <label className="captcha-placeholder">
@@ -108,9 +158,9 @@ function Login() {
                             className="btn btn-login"
                             onClick={handleLogin}
                         >
-                            Entrar
+                            {t("sign_in")}
                         </button>
-                        <a href="#" className="link-senha">Esqueceu a senha?</a>
+                        <a href="#" className="link-senha">{t("forgot_password")}</a>
                     </div>
                 </form>
 
@@ -144,12 +194,12 @@ function Login() {
                             <circle cx="90" cy="60" r="70" fill="#2b3a4a" opacity="0.6" />
                             <circle cx="330" cy="170" r="90" fill="#243040" opacity="0.6" />
                             <rect x="40" y="120" width="120" height="70" rx="10" fill="#33455a" />
-                            <circle cx="230" cy="80" r="34" fill="none" stroke="var(--brand-accent)" strokeWidth="1.5" opacity="0.8" />
+                            <circle cx="230" cy="80" r="34" fill="none" stroke="#4CAF50" strokeWidth="1.5" opacity="0.8" />
                             <circle cx="230" cy="80" r="20" fill="none" stroke="#2E7DD1" strokeWidth="1.5" opacity="0.8" />
-                            <line x1="230" y1="46" x2="230" y2="20" stroke="var(--brand-accent)" strokeWidth="1.5" />
+                            <line x1="230" y1="46" x2="230" y2="20" stroke="#4CAF50" strokeWidth="1.5" />
                             <line x1="264" y1="80" x2="290" y2="80" stroke="#2E7DD1" strokeWidth="1.5" />
                             <rect x="150" y="150" width="14" height="14" fill="#F2A93B" />
-                            <rect x="172" y="150" width="14" height="14" fill="var(--brand-accent)" />
+                            <rect x="172" y="150" width="14" height="14" fill="#4CAF50" />
                             <rect x="194" y="150" width="14" height="14" fill="#2E7DD1" />
                         </svg>
                         <button className="play-btn" aria-label="Reproduzir vídeo">
@@ -159,7 +209,7 @@ function Login() {
 
                     <a href={branding.whatsappLink} className="btn-whatsapp">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.4L2 22l4.7-1.6a11 11 0 0 0 13.8-16.9zM12 20a9 9 0 0 1-4.6-1.3l-.3-.2-3 1 1-2.9-.2-.3A9 9 0 1 1 12 20zm4.9-6.6c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4-.1-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3s1 2.7 1.1 2.9c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z" /></svg>
-                        Entrar em contato
+                        {t("contact_us")}
                     </a>
                 </div>
 

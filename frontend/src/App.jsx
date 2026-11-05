@@ -1,11 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from "./components/Layout/Layout";
-import Painel from './pages/Painel/Painel';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
-import Loja from './pages/Loja/Loja';
-import LojaForm from './pages/Loja/LojaForm';
+import Clientes from './pages/Clientes/Clientes';
+import Produtos from './pages/Produtos/Produtos';
+import Configuracao from './pages/Configuracao/Configuracao';
+import ClientesForm from './pages/Clientes/ClientesForm';
+import ProdutosForm from './pages/Produtos/ProdutosForm';
 import Suporte from './pages/Suporte/Suporte';
-import Gestor from './pages/Gestor/Gestor';
+import TesteIdioma from './components/TesteIdioma';
 
 function App() {
     return (
@@ -13,11 +16,13 @@ function App() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route element={<Layout />}>
-                    <Route path="/dashboard" element={<Painel />} />
-                    <Route path="/produtos" element={<Loja />} />
-                    <Route path="/produtos/novo" element={<LojaForm />} />
-                    <Route path="/suporte/*" element={<Suporte />} />
-                    <Route path="/gestor/*" element={<Gestor />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/clientes" element={<Clientes />} />
+                    <Route path="/clientes/novo" element={<ClientesForm />} />
+                    <Route path="/produtos" element={<Produtos />} />
+                    <Route path="/produtos/novo" element={<ProdutosForm />} />
+                    <Route path="/suporte" element={<Suporte />} />
+                    <Route path="/configuracoes" element={<Configuracao />} />
                 </Route>
             </Routes>
         </BrowserRouter>
@@ -25,36 +30,3 @@ function App() {
 }
 
 export default App;
-
-// import { useEffect, useState } from "react";
-// import { getTenantByDomain } from "./services/tenantService";
-
-// function App() {
-//     const [tenant, setTenant] = useState(null);
-//     const [error, setError] = useState(null);
-
-//     useEffect(() => {
-//         getTenantByDomain()
-//             .then(setTenant)
-//             .catch((err) => setError(err.message));
-//     }, []);
-
-//     if (error) {
-//         return <div>{error}</div>;
-//     }
-
-//     if (!tenant) {
-//         return <div>Carregando...</div>;
-//     }
-
-//     return (
-//         <div>
-//             <h1>{tenant.name}</h1>
-//             <p>ID: {tenant.id}</p>
-//             <p>Domínio: {tenant.domain}</p>
-//             <p>Logo: {tenant.logo}</p>
-//         </div>
-//     );
-// }
-
-// export default App;
