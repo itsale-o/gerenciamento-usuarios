@@ -1,4 +1,4 @@
-import "./ListToolbar.css";
+import "./ListToolBar.css";
 
 function ListToolbar({
     searchPlaceholder="Buscar...",

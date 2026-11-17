@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import ListPage from "../../components/ListPage/ListPage";
 import ListHeader from '../../components/ListHeader/ListHeader';
-import ListToolbar from '../../components/ListToolbar/ListToolbar';
+import ListToolbar from '../../components/ListToolBar/ListToolBar';
 import DataTable from '../../components/DataTable/DataTable';
 import Pagination from '../../components/Pagination/Pagination';
 import EmptyState from '../../components/EmptyState/EmptyState';
