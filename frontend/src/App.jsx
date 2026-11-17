@@ -9,6 +9,7 @@ import ClientesForm from './pages/Clientes/ClientesForm';
 import ProdutosForm from './pages/Produtos/ProdutosForm';
 import Suporte from './pages/Suporte/Suporte';
 import TesteIdioma from './components/TesteIdioma';
+import TestDevice from './pages/TestDevice';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route element={<Layout />}>
+                    <Route path="/test-device" element={<TestDevice />}/>
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/clientes" element={<Clientes />} />
                     <Route path="/clientes/novo" element={<ClientesForm />} />

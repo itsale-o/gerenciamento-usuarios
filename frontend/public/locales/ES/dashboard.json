@@ -1,7 +1,6 @@
 {
-    "welcome": "Bienvenido",
-    "subtitle": "Facilita tu rutina centralizando todo en un solo lugar.",
-    "input_placeholder": "¿Qué necesitas...",
+    "list": "Listar",
+    "manage": "Gestionar",
     "general": "General",
     "systems": "Sistemas",
     "reseller": "Revendedor",
@@ -9,7 +8,5 @@
     "integrator": "Integrador",
     "accountant": "Contador",
     "consultant": "Consultor",
-    "support": "Atención",
-    "list": "Listar",
-    "manage": "Gestionar"
+    "support": "Soporte"
 }

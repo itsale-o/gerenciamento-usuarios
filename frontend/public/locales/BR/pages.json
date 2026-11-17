@@ -1,0 +1,20 @@
+{
+    "new_product": "Cadastrar produto",
+    "new_product_description": "Confira os dados do produto antes de confirmar o cadastro.",
+    "title": "Loja",
+    "description": "Escolha as soluções que sua empresa precisa.",
+    "my_tickets": "Meus chamados",
+    "my_tickets_description": "Acompanhe suas solicitações de atendimento.",
+    "solutions": "Base de soluções",
+    "solutions_description": "Encontre respostas e orientações para suas dúvidas.",
+    "people": "Pessoas",
+    "people_description": "Consulte e gerencie as pessoas da plataforma.",
+    "systems": "Sistemas",
+    "systems_description": "Gerencie os sistemas e integrações disponíveis.",
+    "financial": "Financeiro",
+    "financial_description": "Acompanhe informações financeiras e movimentações.",
+    "administrate": "Administrar",
+    "administrate_description": "Configure permissões e parâmetros de gestão.",
+    "monitor": "Monitor",
+    "monitor_description": "Acompanhe os principais indicadores da operação."
+}

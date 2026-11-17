@@ -1,4 +1,46 @@
 {
-    "input_placeholder": "What do you need...",
-    "logout": "Logout"
+    "dashboard": {
+        "title": "Welcome",
+        "description": "Make your daily routine easier by bringing everything together in one place."
+    },
+    "new_product": {
+        "title": "Add Product",
+        "description": "Review the product details before confirming the registration."
+    },
+    "store": {
+        "title": "Store",
+        "description": "Choose the solutions your business needs."
+    },
+    "my_tickets": {
+        "title": "My Support Tickets",
+        "description": "Track your support requests."
+    },
+    "solutions": {
+        "title": "Knowledge Base",
+        "description": "Find answers and guidance to your questions."
+    },
+    "support": {
+        "title": "Support",
+        "description": "Get in touch with our team for assistance."
+    },
+    "people": {
+        "title": "People",
+        "description": "View and manage platform users."
+    },
+    "systems": {
+        "title": "Systems",
+        "description": "Manage available systems and integrations."
+    },
+    "financial": {
+        "title": "Finance",
+        "description": "Track financial information and transactions."
+    },
+    "administrate": {
+        "title": "Administration",
+        "description": "Configure management permissions and settings."
+    },
+    "monitor": {
+        "title": "Overview",
+        "description": "Monitor the main operational indicators."
+    }
 }

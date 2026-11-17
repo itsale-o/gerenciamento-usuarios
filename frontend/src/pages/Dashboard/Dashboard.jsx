@@ -7,11 +7,6 @@ function Dashboard() {
 
     return (
         <>
-            <div className="page-title">
-                <h1>{t("welcome")}, Alessandra.</h1>
-                <p>{t("subtitle")}</p>
-            </div>
-
             <div className="cards">
                 <Card
                     title={t("general")}

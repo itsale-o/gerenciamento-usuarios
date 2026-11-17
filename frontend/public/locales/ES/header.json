@@ -1,4 +1,46 @@
 {
-    "input_placeholder": "¿Qué necesitas...",
-    "logout": "Salir"
+    "dashboard": {
+        "title": "Bienvenido",
+        "description": "Facilita tu rutina centralizando todo en un solo lugar."
+    },
+    "new_product": {
+        "title": "Registrar producto",
+        "description": "Revisa los datos del producto antes de confirmar el registro."
+    },
+    "store": {
+        "title": "Tienda",
+        "description": "Elige las soluciones que tu empresa necesita."
+    },
+    "my_tickets": {
+        "title": "Mis solicitudes",
+        "description": "Haz seguimiento de tus solicitudes de atención."
+    },
+    "solutions": {
+        "title": "Base de conocimientos",
+        "description": "Encuentra respuestas y orientación para tus dudas."
+    },
+    "support": {
+        "title": "Atención al cliente",
+        "description": "Ponte en contacto con nuestro equipo para recibir ayuda."
+    },
+    "people": {
+        "title": "Personas",
+        "description": "Consulta y administra a las personas de la plataforma."
+    },
+    "systems": {
+        "title": "Sistemas",
+        "description": "Gestiona los sistemas e integraciones disponibles."
+    },
+    "financial": {
+        "title": "Finanzas",
+        "description": "Consulta la información financiera y los movimientos."
+    },
+    "administrate": {
+        "title": "Administración",
+        "description": "Configura los permisos y parámetros de gestión."
+    },
+    "monitor": {
+        "title": "Monitor",
+        "description": "Supervisa los principales indicadores de la operación."
+    }
 }

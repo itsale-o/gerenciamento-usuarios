@@ -4,5 +4,12 @@
     "back": "Back",
     "delete": "Delete",
     "edit": "Edit",
-    "loading": "Loading..."
+    "loading": "Loading...",
+
+    "sections": {
+        "dashboard": "Dashboard",
+        "store": "Store",
+        "support": "Support",
+        "manager": "Manager"
+    }
 }

@@ -6,7 +6,7 @@ function Header() {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
     const dropdownRef = useRef(null);
-    const { t } = useTranslation("header");
+    const { t } = useTranslation("navbar");
 
     useEffect(() => {
         function handleClickOutside(event) {

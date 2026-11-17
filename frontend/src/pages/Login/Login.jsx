@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { getTenantBranding } from '../../services/brandingService';
 import { useTranslation } from 'react-i18next';
 import { getAvailableLanguages } from '../../services/languageService';
+import { login as authenticate } from "../../services/authService";
+import { getDeviceInfo } from '../../services/deviceService';
+import { getEncryptionVariant } from '../../services/authService';
+import { getKeyDay } from '../../services/authService';
 
 function Login() {
     const navigate = useNavigate();
@@ -11,6 +15,11 @@ function Login() {
     const [loadingBranding, setLoadingBranding] = useState(true);
     const { t, i18n } = useTranslation("login");
     const [languages, setLanguages] = useState([]);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     // 1. Carrega o brading
     useEffect(() => {
@@ -52,8 +61,52 @@ function Login() {
         };
     }, []);
 
-    function handleLogin() {
-        navigate('/dashboard');
+    async function handleLogin(event) {
+        event.preventDefault();
+
+        setLoading(true);
+        setError("");
+
+        try {
+            console.log("Iniciando teste da Key Day...");
+
+            const keyDay = await getKeyDay();
+
+            console.log("Key Day recebida:", keyDay);
+        } catch (error) {
+            console.error("Erro no login:", error);
+            setError(error.message || "Erro ao realizar login.");
+
+        }
+            // Recupera informações do dispositivo
+        //     const deviceInfo = await getDeviceInfo();
+
+        //     if (!deviceInfo.publicIP) {
+        //         throw new Error("Não foi possível identificar o IP público.");
+        //     }
+
+        //     // Realiza autenticação
+        //     const token = await authenticate({
+        //         email,
+        //         password,
+        //         ipPublic: deviceInfo.publicIP,
+        //         ipPrivate: deviceInfo.privateIP,
+        //         ipDevice: deviceInfo.deviceID
+        //     });
+
+        //     // Armazena o token
+        //     localStorage.setItem("access-token", token);
+
+        //     // Redireciona
+        //     navigate("/dashboard");
+
+        // } catch (error) {
+        //     console.error("Erro no login:", error);
+        //     setError(error.message || "Erro ao realizar login.");
+
+        // } finally {
+        //     setLoading(false);
+        // }
     }
 
     function handleLanguageChange(event) {
@@ -101,7 +154,7 @@ function Login() {
                     <span className="logo-text">{branding.companyName}</span>
                 </div>
 
-                <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+                <form className="login-form">
                     <select
                         value={i18n.resolvedLanguage || i18n.language}
                         onChange={handleLanguageChange}
@@ -127,6 +180,8 @@ function Login() {
                             required 
                             className="form-control" 
                             title={t("input_user_title")}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -139,6 +194,8 @@ function Login() {
                             placeholder={t("password")} 
                             required 
                             className="form-control" 
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
@@ -151,14 +208,20 @@ function Login() {
                             reCAPTCHA
                         </span>
                     </label>
-
+                    
+                    {error && (
+                        <div className="alert alert-danger" role="alert">
+                            {error}
+                        </div>
+                    )}
                     <div className="group-btn">
                         <button
                             type="button"
+                            onClick={getKeyDay}
                             className="btn btn-login"
-                            onClick={handleLogin}
+                            // disabled={loading}
                         >
-                            {t("sign_in")}
+                            TESTE{/* {loading ? "Entrando..." : t("sign_in")} */}
                         </button>
                         <a href="#" className="link-senha">{t("forgot_password")}</a>
                     </div>
