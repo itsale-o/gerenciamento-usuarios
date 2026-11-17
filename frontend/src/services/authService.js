@@ -54,18 +54,27 @@ export async function getKeyDay() {
 export async function getTkEncry(KeyDay) {
     const token = await generateToken(KEY_1);
 
+    const body = {
+        str: KeyDay
+    };
+
+    console.log("KeyDay recebida:", KeyDay);
+    console.log("Tipo:", typeof KeyDay);
+    console.log("Body enviado:", JSON.stringify(body));
+
     const response = await fetch(`${API_URL}/tkencry`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify({
-            str: KeyDay
-        })
+        body: JSON.stringify(body)
     });
 
     const responseBody = await response.text();
+
+    console.log("Resposta HTTP:", response.status);
+    console.log("Resposta da API:", responseBody);
 
     if (!response.ok) {
         throw new Error(
@@ -80,6 +89,21 @@ export async function getTkEncry(KeyDay) {
     }
 
     return data["1"];
+}
+
+export async function initializeEncryption() {
+    try {
+        const KeyDay = await getKeyDay();
+        const TkEncry = await getTkEncry(KeyDay);
+
+        return {
+            KeyDay,
+            TkEncry
+        };
+    } catch (error) {
+        console.error("Erro ao inicializar a criptografia:", error);
+        throw error;
+    }
 }
 
 

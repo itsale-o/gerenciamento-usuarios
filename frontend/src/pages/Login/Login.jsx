@@ -6,9 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { getAvailableLanguages } from '../../services/languageService';
 import { login as authenticate } from "../../services/authService";
 import { getDeviceInfo } from '../../services/deviceService';
-import { getEncryptionVariant } from '../../services/authService';
+import { getTkEncry } from '../../services/authService';
 import { getKeyDay } from '../../services/authService';
 
+import { initializeEncryption } from '../../services/authService';
 function Login() {
     const navigate = useNavigate();
     const [branding, setBranding] = useState(null);
@@ -60,6 +61,18 @@ function Login() {
             isMounted = false;
         };
     }, []);
+
+    async function handleTestEncryption() {
+        try {
+            const { KeyDay, TkEncry } = await initializeEncryption();
+
+            console.log("KeyDay recuperada:", KeyDay);
+            console.log("TkEncry recuperada:", TkEncry);
+
+        } catch (error) {
+            console.error("Falha no teste de criptografia:", error);
+        }
+    }
 
     async function handleLogin(event) {
         event.preventDefault();
@@ -215,6 +228,13 @@ function Login() {
                         </div>
                     )}
                     <div className="group-btn">
+                        <button
+                            type="button"
+                            onClick={handleTestEncryption}
+                            className="btn btn-login"
+                        >
+                            TESTE 2
+                        </button>
                         <button
                             type="button"
                             onClick={getKeyDay}
