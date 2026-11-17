@@ -91,7 +91,7 @@ export async function login({
     ipDevice = "0000000000"
 }) {
     const keyDay = await getKeyDay();
-    const tkencry = await getEncryptionVariant(KeyDay)
+    const tkencry = await getTkEncry(keyDay);
 
     const response = await fetch(`${API_URL}/login`, {
         method: "POST",
@@ -127,4 +127,3 @@ export async function login({
         birthday: data["5"]
     };
 }
-

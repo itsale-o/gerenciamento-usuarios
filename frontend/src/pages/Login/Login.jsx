@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { getAvailableLanguages } from '../../services/languageService';
 import { login as authenticate } from "../../services/authService";
 import { getDeviceInfo } from '../../services/deviceService';
-import { getEncryptionVariant } from '../../services/authService';
 import { getKeyDay } from '../../services/authService';
 
 function Login() {
